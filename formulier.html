@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoFort Onderwijsaanvraag</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Onderwijsaanvraagformulier</h1>
+    <form id="educationForm">
+        <fieldset>
+            <legend>Basis Informatie</legend>
+            <label for="contactName">Naam contactpersoon:</label>
+            <input type="text" id="contactName" name="contactName" required>
+            
+            <label for="email">E-mailadres:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phone">Telefoonnummer:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="totalStudents">Aantal leerlingen totaal:</label>
+            <input type="number" id="totalStudents" name="totalStudents" min="40" max="160" step="1" required>
+            
+            <label for="totalGuides">Aantal begeleiders:</label>
+            <input type="number" id="totalGuides" name="totalGuides" required>
+            
+            <label for="gradeLevel">Leerjaar en niveau:</label>
+            <input type="text" id="gradeLevel" name="gradeLevel" required>
+            
+            <label for="schoolName">Naam school:</label>
+            <input type="text" id="schoolName" name="schoolName" required>
+            
+            <label for="address">Adres:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="zipcode">Postcode:</label>
+            <input type="text" id="zipcode" name="zipcode" required>
+            
+            <label for="city">Plaats:</label>
+            <input type="text" id="city" name="city" required>
+            
+            <label for="visitDate">Datum bezoek:</label>
+            <input type="date" id="visitDate" name="visitDate" required>
+            
+            <label for="arrivalTime">Aankomsttijd bij GeoFort:</label>
+            <input type="time" id="arrivalTime" name="arrivalTime" required>
+            
+            <label for="departureTime">Vertrektijd bij GeoFort:</label>
+            <input type="time" id="departureTime" name="departureTime" required>
+            
+            <label for="howDidYouKnow">Hoe kent u GeoFort?:</label>
+            <input type="text" id="howDidYouKnow" name="howDidYouKnow">
+        </fieldset>
+
+        <fieldset>
+            <legend>Praktische Informatie</legend>
+            <p>
+                • Minimaal 40 leerlingen, maximaal 160 leerlingen<br>
+                • €20,- per leerling (incl. BTW), per 8 leerlingen is 1 begeleider gratis. Deze kosten zijn inclusief:
+                <ul>
+                    <li>BTW</li>
+                    <li>De indeling van de dag d.m.v. een rooster</li>
+                    <li>Begeleiding bij de meeste modules</li>
+                    <li>Een vegetarische snack en plantaardige chocolademelk voor de leerlingen (inbegrepen bij de lesmodule voedselinnovatie)</li>
+                    <li>Bij aankomst een kop koffie of thee voor de docenten/begeleiders</li>
+                    <li>Een onvergetelijke dag!</li>
+                </ul>
+                • Een bezoek kan plaatsvinden tussen 09:30 en 15:00 uur, met een maximum van 5 ronden. Komt u om 09:30 uur, dan bent u (incl. opstarten en pauzes) om 14:30 uur klaar.<br>
+                • Museumjaarkaart is niet geldig op onderwijsarrangementen. Cultuurkaart / CJP zijn wel geldig. Vul bij de opmerkingen naam, pashouder en CJP-nummer in.
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Onderwijsniveau en Modules</legend>
+            <label for="educationLevel">Onderwijsniveau:</label>
+            <select id="educationLevel" name="educationLevel">
+                <option value="primairOnderwijs">Primair Onderwijs</option>
+                <option value="voortgezetOnderbouw">Voortgezet Onderwijs - Onderbouw</option>
+                <option value="voortgezetBovenbouw">Voortgezet Onderwijs - Bovenbouw</option>
+            </select>
+
+            <div id="moduleSelection">
+                <label for="electiveModule">Kies een keuzemodule:</label>
+                <select id="electiveModule" name="electiveModule">
+                    <!-- Keuzemodules worden hier dynamisch toegevoegd -->
+                </select>
+            </div>
+
+            <label for="numberOfStudents">Aantal leerlingen:</label>
+            <input type="number" id="numberOfStudents" name="numberOfStudents" min="40" max="160" step="1">
+            <span style="margin-left: 10px;">(minimaal 40, maximaal 160)</span>
+        </fieldset>
+
+        <div id="groupCountDisplay">
+            <h3>Aantal groepen</h3>
+            <p id="groupCount">-</p>
+        </div>
+
+        <div id="selectedModulesDisplay">
+            <h3>Geselecteerde modules:</h3>
+            <div id="standardModules">
+                <h4>Standaardvakken:</h4>
+                <ul id="standardModulesList"></ul>
+            </div>
+            <div id="electiveModuleDisplay">
+                <h4>Keuzevak:</h4>
+                <p id="chosenElectiveModule"></p>
+            </div>
+        </div>
+        <div id="roosterDisplay">
+            <h3>Voorbeeldrooster:</h3>
+            <div id="roosterImageContainer">
+                <img id="roosterImage" src="" alt="Voorbeeldrooster">
+            </div>
+        </div>
+    </form>
+
+    <script>
+        const educationModules = {
+            primairOnderwijs: {
+                standard: ["Klimaat Experience", "Klimparcour", "Voedselinnovatie", "Dynamische globe"],
+                elective: ["Minecraft klimaat speurtocht", "Earth Watch"]
+            },
+            voortgezetOnderbouw: {
+                standard: ["Klimaat Experience", "Voedselinnovatie", "Dynamische globe", "Earth Watch"],
+                elective: ["Minecraft windenergie speurtocht", "Stop de Klimaat Klok"]
+            },
+            voortgezetBovenbouw: {
+                standard: ["Klimaat Experience", "Voedselinnovatie", "Dynamische globe", "Earth Watch", "Stop de Klimaat Klok"],
+                elective: ["Crisismanagement"]
+            }
+        };
+
+        const moduleDetails = {
+            "Minecraft klimaat speurtocht": {
+                locatie: "Minecraftzaal",
+                backup_locatie: "Virtual Flow zaal",
+                begeleiding: "begeleid"
+            },
+            "Earth Watch": {
+                locatie: "Bus",
+                backup_locatie: "Building Blocks Dome",
+                begeleiding: "begeleid"
+            },
+            "Klimaat Experience": {
+                locatie: "GeoPlein",
+                backup_locatie: "GeoPlein",
+                begeleiding: "begeleid"
+            },
+            "Klimparcour": {
+                locatie: "Speurtuin",
+                backup_locatie: "Speurtuin",
+                begeleiding: "Onbegeleid"
+            },
+            "Voedselinnovatie": {
+                locatie: "Auditorium",
+                backup_locatie: "Auditorium",
+                begeleiding: "begeleid"
+            },
+            "Dynamische globe": {
+                locatie: "Buskruid bios",
+                backup_locatie: "Buskruid bios",
+                begeleiding: "begeleid"
+            },
+            "Minecraft windenergie speurtocht": {
+                locatie: "Minecraftzaal",
+                backup_locatie: "Virtual Flow zaal",
+                begeleiding: "begeleid"
+            },
+            "Minecraft programmeren": {
+                locatie: "Minecraftzaal",
+                backup_locatie: "Virtual Flow zaal",
+                begeleiding: "begeleid"
+            },
+            "Stop de Klimaat Klok": {
+                locatie: "Climate Cubs Doolhof",
+                backup_locatie: "Climate Cubs Doolhof",
+                begeleiding: "begeleid"
+            },
+            "Zonnepanelen": {
+                locatie: "RPS",
+                backup_locatie: "RPS",
+                begeleiding: "begeleid"
+            },
+            "Crisismanagement": {
+                locatie: "Virtual Flow zaal",
+                backup_locatie: "Power House",
+                begeleiding: "begeleid"
+            }
+        };
+
+        const beschikbareRooster = {
+            primairOnderwijs: {
+                "Klimaat Experience": {
+                    "3": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_3.png",
+                    "4": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_4.png",
+                    "5": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_5.png",
+                    "6": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_6.png",
+                    "7": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_7.png",
+                    "8": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_8.png",
+                    "9": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_9.png",
+                    "10": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_10.png"
+                },
+                "Minecraft klimaat speurtocht": {
+                    "3": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_3.png",
+                    "4": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_4.png",
+                    "5": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_5.png",
+                    "6": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_6.png",
+                    "7": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_7.png",
+                    "8": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_8.png",
+                    "9": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_9.png",
+                    "10": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_10.png"
+                },
+                "Earth Watch": {
+                    "3": "Voorbeeld_PrimairOnderwijs_EarthWatch_3.png",
+                    "4": "Voorbeeld_PrimairOnderwijs_EarthWatch_4.png",
+                    "5": "Voorbeeld_PrimairOnderwijs_EarthWatch_5.png",
+                    "6": "Voorbeeld_PrimairOnderwijs_EarthWatch_6.png",
+                    "7": "Voorbeeld_PrimairOnderwijs_EarthWatch_7.png",
+                    "8": "Voorbeeld_PrimairOnderwijs_EarthWatch_8.png",
+                    "9": "Voorbeeld_PrimairOnderwijs_EarthWatch_9.png",
+                    "10": "Voorbeeld_PrimairOnderwijs_EarthWatch_10.png"
+                }
+            },
+            voortgezetOnderbouw: {
+                "Minecraft windenergie speurtocht": {
+                    "3": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_3.png",
+                    "4": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_4.png",
+                    "5": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_5.png",
+                    "6": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_6.png",
+                    "7": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_7.png",
+                    "8": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_8.png",
+                    "9": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_9.png",
+                    "10": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_10.png"
+                },
+                "Stop de Klimaat Klok": {
+                    "3": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_3.png",
+                    "4": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_4.png",
+                    "5": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_5.png",
+                    "6": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_6.png",
+                    "7": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_7.png",
+                    "8": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_8.png",
+                    "9": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_9.png",
+                    "10": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_10.png"
+                }
+            },
+            voortgezetBovenbouw: {
+                "Crisismanagement": {
+                    "3": "Voorbeeld_VOBovenbouw_Crisismanagement_3.png",
+                    "4": "Voorbeeld_VOBovenbouw_Crisismanagement_4.png",
+                    "5": "Voorbeeld_VOBovenbouw_Crisismanagement_5.png",
+                    "6": "Voorbeeld_VOBovenbouw_Crisismanagement_6.png",
+                    "7": "Voorbeeld_VOBovenbouw_Crisismanagement_7.png",
+                    "8": "Voorbeeld_VOBovenbouw_Crisismanagement_8.png",
+                    "9": "Voorbeeld_VOBovenbouw_Crisismanagement_9.png",
+                    "10": "Voorbeeld_VOBovenbouw_Crisismanagement_10.png"
+                }
+            }
+        };
+
+        function updateElectiveModules() {
+            const educationLevel = document.getElementById('educationLevel').value;
+            const electiveModuleSelect = document.getElementById('electiveModule');
+
+            // Reset the elective modules
+            electiveModuleSelect.innerHTML = '';
+
+            if (educationLevel in educationModules) {
+                // Populate the elective modules
+                educationModules[educationLevel].elective.forEach(module => {
+                    const option = document.createElement('option');
+                    option.value = module;
+                    option.textContent = module;
+                    electiveModuleSelect.appendChild(option);
+                });
+            }
+
+            updateSelectedModulesDisplay();
+        }
+
+        function updateSelectedModulesDisplay() {
+            const educationLevel = document.getElementById('educationLevel').value;
+            const electiveModule = document.getElementById('electiveModule').value;
+
+            // Update standard modules
+            const standardModulesList = document.getElementById('standardModulesList');
+            standardModulesList.innerHTML = '';
+            if (educationLevel in educationModules) {
+                educationModules[educationLevel].standard.forEach(module => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = module;
+                    standardModulesList.appendChild(listItem);
+                });
+            }
+
+            // Update chosen elective module
+            const chosenElectiveModule = document.getElementById('chosenElectiveModule');
+            chosenElectiveModule.textContent = electiveModule || 'Geen keuzevak geselecteerd';
+        }
+
+        function updateGroupCount() {
+            const numberOfStudents = parseInt(document.getElementById('numberOfStudents').value, 10);
+            const educationLevel = document.getElementById('educationLevel').value;
+            const electiveModule = document.getElementById('electiveModule').value;
+            let groupCount = '-';
+
+            if (numberOfStudents >= 40 && numberOfStudents <= 50) {
+                groupCount = 3;
+            } else if (numberOfStudents >= 51 && numberOfStudents <= 65) {
+                groupCount = 4;
+            } else if (numberOfStudents >= 66 && numberOfStudents <= 80) {
+                groupCount = 5;
+            } else if (numberOfStudents >= 81 && numberOfStudents <= 100) {
+                groupCount = 6;
+            } else if (numberOfStudents >= 101 && numberOfStudents <= 120) {
+                groupCount = 7;
+            } else if (numberOfStudents >= 121 && numberOfStudents <= 130) {
+                groupCount = 8;
+            } else if (numberOfStudents >= 131 && numberOfStudents <= 150) {
+                groupCount = 9;
+            } else if (numberOfStudents >= 151 && numberOfStudents <= 160) {
+                groupCount = 10;
+            }
+
+            document.getElementById('groupCount').textContent = groupCount;
+            const roosterImageContainer = document.getElementById('roosterImageContainer');
+            const roosterImage = document.getElementById('roosterImage');
+
+            if (educationLevel && electiveModule && groupCount !== '-') {
+                const roosterFile = beschikbareRooster[educationLevel]?.[electiveModule]?.[groupCount];
+                if (roosterFile) {
+                    roosterImageContainer.style.display = 'block';
+                    roosterImage.src = `./${roosterFile}`;
+                } else {
+                    roosterImageContainer.style.display = 'none';
+                }
+            } else {
+                roosterImageContainer.style.display = 'none';
+            }
+        }
+
+        document.getElementById('educationLevel').addEventListener('change', () => {
+            updateElectiveModules();
+            updateGroupCount();
+        });
+        document.getElementById('electiveModule').addEventListener('change', () => {
+            updateSelectedModulesDisplay();
+            updateGroupCount();
+        });
+        document.getElementById('numberOfStudents').addEventListener('input', updateGroupCount);
+
+        // Initial update based on the default selected value
+        updateElectiveModules();
+        updateGroupCount();
+    </script>
+</body>
+</html>
