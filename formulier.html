@@ -7,129 +7,238 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Onderwijsaanvraagformulier</h1>
-    <form id="educationForm">
+    <h1>ONDERWIJS AANVRAAG-FORMULIER</h1>
+    <form id="onderwijsFormulier">
         <fieldset>
-            <legend>Basis Informatie</legend>
-            <label for="contactName">Naam contactpersoon:</label>
-            <input type="text" id="contactName" name="contactName" required>
+            <legend>Basis-Gegevens</legend>
+            <label for="contactpersoonnaam">Naam contactpersoon</label>
+            <input type="text" id="contactpersoonnaam" name="contactpersoonnaam" required>
             
-            <label for="email">E-mailadres:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="emailadres">E-mailadres</label>
+            <input type="email" id="emailadres" name="emailadres" required>
             
-            <label for="phone">Telefoonnummer:</label>
-            <input type="tel" id="phone" name="phone" required>
+            <label for="telefoonnummer">Telefoonnummer</label>
+            <input type="tel" id="telefoonnummer" name="telefoonnummer" required>
             
-            <label for="totalStudents">Aantal leerlingen totaal:</label>
-            <input type="number" id="totalStudents" name="totalStudents" min="40" max="160" step="1" required>
+            <label for="totaalbegeleiders">Aantal begeleiders</label>
+            <input type="number" id="totaalbegeleiders" name="totaalbegeleiders" min="1" max="50" step="1" required> 
             
-            <label for="totalGuides">Aantal begeleiders:</label>
-            <input type="number" id="totalGuides" name="totalGuides" required>
+            <label for="niveauleerjaar">Niveau en Leerjaar</label>
+            <input type="text" id="niveauLeerjaar" name="niveauleerjaar" required>
             
-            <label for="gradeLevel">Leerjaar en niveau:</label>
-            <input type="text" id="gradeLevel" name="gradeLevel" required>
+            <label for="schoolnaam">Naam school</label>
+            <input type="text" id="schoolnaam" name="schoolnaam" required>
             
-            <label for="schoolName">Naam school:</label>
-            <input type="text" id="schoolName" name="schoolName" required>
+            <label for="adres">Adres</label>
+            <input type="text" id="adres" name="adres" required>
             
-            <label for="address">Adres:</label>
-            <input type="text" id="address" name="address" required>
+            <label for="postcodeplaats">Postcode en plaats</label>
+            <input type="text" id="postcodeplaats" name="postcodeplaats" required>
             
-            <label for="zipcode">Postcode:</label>
-            <input type="text" id="zipcode" name="zipcode" required>
+            <label for="bezoekdatum">Datum bezoek</label>
+            <input type="date" id="bezoekdatum" name="bezoekdatum" required>
             
-            <label for="city">Plaats:</label>
-            <input type="text" id="city" name="city" required>
+            <label for="aankomsttijd">Wij verwachten u om</label>
+            <input type="time" id="aankomsttijd" name="aankomsttijd" value="09:45" readonly required data-hover-message="Standaard aankomsttijd">
+
+            <label for="vertrektijd">Het vertrek is om</label>
+            <input type="time" id="vertrektijd" name="vertrektijd" value="15:00" readonly required data-hover-message="Standaard vertrektijd">
             
-            <label for="visitDate">Datum bezoek:</label>
-            <input type="date" id="visitDate" name="visitDate" required>
-            
-            <label for="arrivalTime">Aankomsttijd bij GeoFort:</label>
-            <input type="time" id="arrivalTime" name="arrivalTime" required>
-            
-            <label for="departureTime">Vertrektijd bij GeoFort:</label>
-            <input type="time" id="departureTime" name="departureTime" required>
-            
-            <label for="howDidYouKnow">Hoe kent u GeoFort?:</label>
-            <input type="text" id="howDidYouKnow" name="howDidYouKnow">
+            <label for="hoekentGeoFort">Hoe kent u GeoFort?</label>
+            <input type="text" id="hoekentGeoFort" name="hoekentGeoFort">
         </fieldset>
 
         <fieldset>
             <legend>Praktische Informatie</legend>
-            <p>
-                • Minimaal 40 leerlingen, maximaal 160 leerlingen<br>
-                • €20,- per leerling (incl. BTW), per 8 leerlingen is 1 begeleider gratis. Deze kosten zijn inclusief:
-                <ul>
+            <div class="informative-text">
+                <h4>Kosten en Voorwaarden</h4>
+                <p>
+                    • Minimaal 40 leerlingen, maximaal 160 leerlingen.<br>
+                    • €20 per leerling (incl. BTW), per 8 leerlingen is 1 begeleider gratis. Deze kosten zijn inclusief:
+                </p>
+                <ul class="secondary-list">
                     <li>BTW</li>
                     <li>De indeling van de dag d.m.v. een rooster</li>
-                    <li>Begeleiding bij de meeste modules</li>
+                    <li>Begeleiding bij de meeste lesmodules</li>
                     <li>Een vegetarische snack en plantaardige chocolademelk voor de leerlingen (inbegrepen bij de lesmodule voedselinnovatie)</li>
                     <li>Bij aankomst een kop koffie of thee voor de docenten/begeleiders</li>
                     <li>Een onvergetelijke dag!</li>
                 </ul>
-                • Een bezoek kan plaatsvinden tussen 09:30 en 15:00 uur, met een maximum van 5 ronden. Komt u om 09:30 uur, dan bent u (incl. opstarten en pauzes) om 14:30 uur klaar.<br>
-                • Museumjaarkaart is niet geldig op onderwijsarrangementen. Cultuurkaart / CJP zijn wel geldig. Vul bij de opmerkingen naam, pashouder en CJP-nummer in.
-            </p>
+                <h4>Tijdschema</h4>
+                <p>
+                    • Een bezoek kan plaatsvinden tussen 09:45 en 15:00 uur, met een maximum van 5 ronden. Na een welkomswoord start de eerste lesmodule om 10:15 en eindigt de laatste om 14:45.<br>
+                    • Museumjaarkaart is niet geldig op onderwijsarrangementen. Cultuurkaart / CJP zijn wel geldig. Vul bij de opmerkingen naam, pashouder en CJP-nummer in.
+                </p>
+            </div>
         </fieldset>
 
         <fieldset>
-            <legend>Onderwijsniveau en Modules</legend>
-            <label for="educationLevel">Onderwijsniveau:</label>
-            <select id="educationLevel" name="educationLevel">
+            <legend>Lesprogramma</legend>
+            <label for="onderwijsNiveau">Selecteer het Schooltype</label>
+            <select id="onderwijsNiveau" name="onderwijsNiveau">
                 <option value="primairOnderwijs">Primair Onderwijs</option>
                 <option value="voortgezetOnderbouw">Voortgezet Onderwijs - Onderbouw</option>
                 <option value="voortgezetBovenbouw">Voortgezet Onderwijs - Bovenbouw</option>
             </select>
 
-            <div id="moduleSelection">
-                <label for="electiveModule">Kies een keuzemodule:</label>
-                <select id="electiveModule" name="electiveModule">
+            <div id="keuzeModuleSelectie">
+                <label for="keuzeModule">Kies een lesmodule</label>
+                <select id="keuzeModule" name="keuzeModule">
                     <!-- Keuzemodules worden hier dynamisch toegevoegd -->
                 </select>
             </div>
 
-            <label for="numberOfStudents">Aantal leerlingen:</label>
-            <input type="number" id="numberOfStudents" name="numberOfStudents" min="40" max="160" step="1">
-            <span style="margin-left: 10px;">(minimaal 40, maximaal 160)</span>
+            <label for="aantalLeerlingen">Vul het aantal leerlingen in</label>
+            <input type="number" id="aantalLeerlingen" name="aantalLeerlingen" min="40" max="160" step="1" required  placeholder="min=40, max=160">
+            <div id="aantalLeerlingenFout" class="foutmelding">Vul alstublieft een geldig aantal van 40 tot en met 160 in.</div>
         </fieldset>
 
-        <div id="groupCountDisplay">
-            <h3>Aantal groepen</h3>
-            <p id="groupCount">-</p>
-        </div>
+        <fieldset>
+            <legend>Overzicht rooster</legend>
+            <div class="informative-text">
+                <div id="groepAantalWeergave">
+                    <h4>Aantal groepen</h4>
+                    <p id="groepAantal">-</p>
+                </div>
+                <div id="geselecteerdeModulesWeergave">
+                    <h4>Standaard lesmodules</h4>
+                    <ul id="standaardModulesLijst">
+                        <!-- Standard modules will be populated here -->
+                    </ul>
+                    <h4>Keuze lesmodule</h4>
+                    <ul id="gekozenKeuzeModule">
+                        <!-- Keuze module will be populated here -->
+                    </ul>
+                </div>
+                <div id="roosterWeergave">
+                    <h4>Voorbeeldrooster</h4>
+                    <div id="roosterAfbeeldingContainer">
+                        <img id="roosterAfbeelding" src="" alt="Voorbeeldrooster">
+                        <button id="downloadRooster" style="display:none;">Download rooster</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Eten en Drinken</legend>
+            <div class="informative-text">
+                <h4>Standaard Inbegrepen</h4>
+                <ul>
+                    <li>Koffie en thee voor begeleiders bij aankomst.</li>
+                    <li>Vegetarische snack en plantaardige chocolademelk voor leerlingen tijdens de lesmodule voedselinnovatie</li>
+                </ul>
+                <h4>Optioneel bij te boeken</h4>
+                <h5>Snacks</h5>
+                <ul>
+                    <li>remiseBreak, kazerneBreak en fortgrachtBreak</li>
+                    <li>waterijsje en pakje drinken</li>
+                </ul>
+                <h5>Lunch</h5>
+                <ul>
+                    <li>Remiselunch </li>
+                    <li>tweeBroodjesAantal</li>
+                </ul>
+            </div>
+            <h4 class="snacks-heading">Snack keuze menu</h4>
+            <span class="subtitle">Vink aan en vul een aantal in</span>
+            <div class="snacks-section">
+                <div class="snack-option">
+                    <label for="remiseBreakCheckbox">Remise break: koek met limonade</label>
+                    <span class="subtitle">€2.60</span>
+                    <div class="input-group">
+                        <input type="checkbox" id="remiseBreakCheckbox" name="snack" value="2.60">
+                        <label for="remiseBreakAantal">Aantal:</label>
+                        <input type="number" id="remiseBreakAantal" name="remiseBreakAantal" min="0" value="0" disabled>
+                    </div>
+                </div>
+                <div class="snack-option">
+                    <label for="kazerneBreakCheckbox">Kazerne break: zakje chips met limonade</label>
+                    <span class="subtitle">€2.60</span>
+                    <div class="input-group">
+                        <input type="checkbox" id="kazerneBreakCheckbox" name="snack" value="2.60">
+                        <label for="kazerneBreakAantal">Aantal:</label>
+                        <input type="number" id="kazerneBreakAantal" name="kazerneBreakAantal" min="0" value="0" disabled>
+                    </div>
+                </div>
+                <div class="snack-option">
+                    <label for="fortgrachtBreakCheckbox">Fortgracht break: fruit met limonade</label>
+                    <span class="subtitle">€2.60</span>
+                    <div class="input-group">
+                        <input type="checkbox" id="fortgrachtBreakCheckbox" name="snack" value="2.60">
+                        <label for="fortgrachtBreakAantal">Aantal:</label>
+                        <input type="number" id="fortgrachtBreakAantal" name="fortgrachtBreakAantal" min="0" value="0" disabled>
+                    </div>
+                </div>
+                <div class="snack-option">
+                    <label for="waterijsjeCheckbox">Waterijsje</label>
+                    <span class="subtitle">€1.00</span>
+                    <div class="input-group">
+                        <input type="checkbox" id="waterijsjeCheckbox" name="snack" value="1.00">
+                        <label for="waterijsjeAantal">Aantal:</label>
+                        <input type="number" id="waterijsjeAantal" name="waterijsjeAantal" min="0" value="0" disabled>
+                    </div>
+                </div>
+                <div class="snack-option">
+                    <label for="pakjeDrinkenCheckbox">Pakje drinken</label>
+                    <span class="subtitle">€1.00</span>
+                    <div class="input-group">
+                        <input type="checkbox" id="pakjeDrinkenCheckbox" name="snack" value="1.00">
+                        <label for="pakjeDrinkenAantal">Aantal:</label>
+                        <input type="number" id="pakjeDrinkenAantal" name="pakjeDrinkenAantal" min="0" value="0" disabled>
+                    </div>
+                </div>
+            </div>
+            <h4 class="lunch-heading">Lunchaanbod </h4>
+            <span class="subtitle">Vink aan en vul een aantal in</span>
+            <div class="snack-option">
+                <label for="remiseLunchCheckbox">Remiselunch: friet, saus, snack en pakje drinken</label>
+                <span class="subtitle">€5.20</span>
+                <div class="input-group">
+                    <input type="checkbox" id="remiseLunchCheckbox" name="lunch" value="5.20">
+                    <label for="remiseLunchAantal">Aantal:</label>
+                    <input type="number" id="remiseLunchAantal" name="remiseLunchAantal" min="0" value="0" disabled>
+                </div>
+            </div>
+            <div class="snack-option">
+                <label for="tweeBroodjesCheckbox">Twee belegde broodjes en fruitsap</label>
+                <span class="subtitle">€10.30</span>
+                <div class="input-group">
+                    <input type="checkbox" id="tweeBroodjesCheckbox" name="lunch" value="10.30">
+                    <label for="tweeBroodjesAantal">Aantal:</label>
+                    <input type="number" id="tweeBroodjesAantal" name="tweeBroodjesAantal" min="0" value="0" disabled>
+                </div>
+            </div>
+            <div class="snack-option">
+                <label for="eigenPicknickCheckbox">Nemen eigen picknick mee</label>
+                <input type="checkbox" id="eigenPicknickCheckbox" name="lunch" value="0">
+            </div>
+        </fieldset>
 
-        <div id="selectedModulesDisplay">
-            <h3>Geselecteerde modules:</h3>
-            <div id="standardModules">
-                <h4>Standaardvakken:</h4>
-                <ul id="standardModulesList"></ul>
+        <fieldset>
+            <legend>Overzicht totaalprijs</legend>
+            <div class="informative-text">
+            <h3>eten en drinken</h3>
+            <div id="foodSummary">
+                
+                <!-- Selected food options will be displayed here -->
             </div>
-            <div id="electiveModuleDisplay">
-                <h4>Keuzevak:</h4>
-                <p id="chosenElectiveModule"></p>
-            </div>
+            <h2>Totaalprijs: €<span id="totalPrice">0.00</span></h2>
         </div>
-        <div id="roosterDisplay">
-            <h3>Voorbeeldrooster:</h3>
-            <div id="roosterImageContainer">
-                <img id="roosterImage" src="" alt="Voorbeeldrooster">
-            </div>
-        </div>
-    </form>
-
+        </fieldset>
+        
     <script>
-        const educationModules = {
+        const onderwijsModules = {
             primairOnderwijs: {
-                standard: ["Klimaat Experience", "Klimparcour", "Voedselinnovatie", "Dynamische globe"],
-                elective: ["Minecraft klimaat speurtocht", "Earth Watch"]
+                standaard: ["Klimaat-Experience", "Klimparcour", "Voedselinnovatie", "Dynamische-Globe"],
+                keuze: ["Minecraft klimaat speurtocht", "Earth-Watch"]
             },
             voortgezetOnderbouw: {
-                standard: ["Klimaat Experience", "Voedselinnovatie", "Dynamische globe", "Earth Watch"],
-                elective: ["Minecraft windenergie speurtocht", "Stop de Klimaat Klok"]
+                standaard: ["Klimaat-Experience", "Voedselinnovatie", "Dynamische-Globe", "Earth-Watch"],
+                keuze: ["Minecraft windenergie speurtocht", "Stop de Klimaat Klok"]
             },
             voortgezetBovenbouw: {
-                standard: ["Klimaat Experience", "Voedselinnovatie", "Dynamische globe", "Earth Watch", "Stop de Klimaat Klok"],
-                elective: ["Crisismanagement"]
+                standaard: ["Klimaat-Experience", "Voedselinnovatie", "Dynamische-Globe", "Earth-Watch", "Stop de Klimaat Klok"],
+                keuze: ["Crisismanagement"]
             }
         };
 
@@ -139,12 +248,12 @@
                 backup_locatie: "Virtual Flow zaal",
                 begeleiding: "begeleid"
             },
-            "Earth Watch": {
+            "Earth-Watch": {
                 locatie: "Bus",
                 backup_locatie: "Building Blocks Dome",
                 begeleiding: "begeleid"
             },
-            "Klimaat Experience": {
+            "Klimaat-Experience": {
                 locatie: "GeoPlein",
                 backup_locatie: "GeoPlein",
                 begeleiding: "begeleid"
@@ -159,7 +268,7 @@
                 backup_locatie: "Auditorium",
                 begeleiding: "begeleid"
             },
-            "Dynamische globe": {
+            "Dynamische-Globe": {
                 locatie: "Buskruid bios",
                 backup_locatie: "Buskruid bios",
                 begeleiding: "begeleid"
@@ -193,7 +302,7 @@
 
         const beschikbareRooster = {
             primairOnderwijs: {
-                "Klimaat Experience": {
+                "Klimaat-Experience": {
                     "3": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_3.png",
                     "4": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_4.png",
                     "5": "Voorbeeld_PrimairOnderwijs_KlimaatExperience_5.png",
@@ -213,7 +322,7 @@
                     "9": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_9.png",
                     "10": "Voorbeeld_PrimairOnderwijs_MinecraftKlimaatSpeurtocht_10.png"
                 },
-                "Earth Watch": {
+                "Earth-Watch": {
                     "3": "Voorbeeld_PrimairOnderwijs_EarthWatch_3.png",
                     "4": "Voorbeeld_PrimairOnderwijs_EarthWatch_4.png",
                     "5": "Voorbeeld_PrimairOnderwijs_EarthWatch_5.png",
@@ -260,100 +369,260 @@
             }
         };
 
-        function updateElectiveModules() {
-            const educationLevel = document.getElementById('educationLevel').value;
-            const electiveModuleSelect = document.getElementById('electiveModule');
+        function werkKeuzeModulesBij1() {
+            const onderwijsNiveau1 = document.getElementById('onderwijsNiveau').value;
+            const keuzeModuleSelect1 = document.getElementById('keuzeModule');
 
-            // Reset the elective modules
-            electiveModuleSelect.innerHTML = '';
+            // Reset de keuzemodules
+            keuzeModuleSelect1.innerHTML = '';
 
-            if (educationLevel in educationModules) {
-                // Populate the elective modules
-                educationModules[educationLevel].elective.forEach(module => {
-                    const option = document.createElement('option');
-                    option.value = module;
-                    option.textContent = module;
-                    electiveModuleSelect.appendChild(option);
+            if (onderwijsNiveau1 in onderwijsModules) {
+                // Vul de keuzemodules in
+                onderwijsModules[onderwijsNiveau1].keuze.forEach(module1 => {
+                    const optie1 = document.createElement('option');
+                    optie1.value = module1;
+                    optie1.textContent = module1;
+                    keuzeModuleSelect1.appendChild(optie1);
                 });
             }
 
-            updateSelectedModulesDisplay();
+            werkGeselecteerdeModulesWeergaveBij2();
         }
 
-        function updateSelectedModulesDisplay() {
-            const educationLevel = document.getElementById('educationLevel').value;
-            const electiveModule = document.getElementById('electiveModule').value;
+        function werkGeselecteerdeModulesWeergaveBij2() {
+            const onderwijsNiveau2 = document.getElementById('onderwijsNiveau').value;
+            const keuzeModule2 = document.getElementById('keuzeModule').value;
 
-            // Update standard modules
-            const standardModulesList = document.getElementById('standardModulesList');
-            standardModulesList.innerHTML = '';
-            if (educationLevel in educationModules) {
-                educationModules[educationLevel].standard.forEach(module => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = module;
-                    standardModulesList.appendChild(listItem);
+            // Werk standaardmodules bij
+            const standaardModulesLijst2 = document.getElementById('standaardModulesLijst');
+            standaardModulesLijst2.innerHTML = '';
+            if (onderwijsNiveau2 in onderwijsModules) {
+                onderwijsModules[onderwijsNiveau2].standaard.forEach(module2 => {
+                    const lijstItem2 = document.createElement('li');
+                    lijstItem2.textContent = module2;
+                    standaardModulesLijst2.appendChild(lijstItem2);
                 });
             }
 
-            // Update chosen elective module
-            const chosenElectiveModule = document.getElementById('chosenElectiveModule');
-            chosenElectiveModule.textContent = electiveModule || 'Geen keuzevak geselecteerd';
+            // Werk gekozen keuzemodule bij
+            const gekozenKeuzeModule2 = document.getElementById('gekozenKeuzeModule');
+            gekozenKeuzeModule2.textContent = keuzeModule2 || 'Geen keuzevak geselecteerd';
         }
 
-        function updateGroupCount() {
-            const numberOfStudents = parseInt(document.getElementById('numberOfStudents').value, 10);
-            const educationLevel = document.getElementById('educationLevel').value;
-            const electiveModule = document.getElementById('electiveModule').value;
-            let groupCount = '-';
+        function werkGroepAantalBij3() {
+            const aantalLeerlingen3 = parseInt(document.getElementById('aantalLeerlingen').value, 10);
+            const onderwijsNiveau3 = document.getElementById('onderwijsNiveau').value;
+            const keuzeModule3 = document.getElementById('keuzeModule').value;
+            let groepAantal3 = '';
 
-            if (numberOfStudents >= 40 && numberOfStudents <= 50) {
-                groupCount = 3;
-            } else if (numberOfStudents >= 51 && numberOfStudents <= 65) {
-                groupCount = 4;
-            } else if (numberOfStudents >= 66 && numberOfStudents <= 80) {
-                groupCount = 5;
-            } else if (numberOfStudents >= 81 && numberOfStudents <= 100) {
-                groupCount = 6;
-            } else if (numberOfStudents >= 101 && numberOfStudents <= 120) {
-                groupCount = 7;
-            } else if (numberOfStudents >= 121 && numberOfStudents <= 130) {
-                groupCount = 8;
-            } else if (numberOfStudents >= 131 && numberOfStudents <= 150) {
-                groupCount = 9;
-            } else if (numberOfStudents >= 151 && numberOfStudents <= 160) {
-                groupCount = 10;
+            if (aantalLeerlingen3 >= 40 && aantalLeerlingen3 <= 50) {
+                groepAantal3 = 3;
+            } else if (aantalLeerlingen3 >= 51 && aantalLeerlingen3 <= 65) {
+                groepAantal3 = 4;
+            } else if (aantalLeerlingen3 >= 66 && aantalLeerlingen3 <= 80) {
+                groepAantal3 = 5;
+            } else if (aantalLeerlingen3 >= 81 && aantalLeerlingen3 <= 100) {
+                groepAantal3 = 6;
+            } else if (aantalLeerlingen3 >= 101 && aantalLeerlingen3 <= 120) {
+                groepAantal3 = 7;
+            } else if (aantalLeerlingen3 >= 121 && aantalLeerlingen3 <= 130) {
+                groepAantal3 = 8;
+            } else if (aantalLeerlingen3 >= 131 && aantalLeerlingen3 <= 150) {
+                groepAantal3 = 9;
+            } else if (aantalLeerlingen3 >= 151 && aantalLeerlingen3 <= 160) {
+                groepAantal3 = 10;
             }
 
-            document.getElementById('groupCount').textContent = groupCount;
-            const roosterImageContainer = document.getElementById('roosterImageContainer');
-            const roosterImage = document.getElementById('roosterImage');
+            document.getElementById('groepAantal').textContent = groepAantal3;
+            const roosterAfbeeldingContainer3 = document.getElementById('roosterAfbeeldingContainer');
+            const roosterAfbeelding3 = document.getElementById('roosterAfbeelding');
+            const downloadButton = document.getElementById('downloadRooster');
 
-            if (educationLevel && electiveModule && groupCount !== '-') {
-                const roosterFile = beschikbareRooster[educationLevel]?.[electiveModule]?.[groupCount];
-                if (roosterFile) {
-                    roosterImageContainer.style.display = 'block';
-                    roosterImage.src = `./${roosterFile}`;
+            if (onderwijsNiveau3 && keuzeModule3 && groepAantal3 !== '-') {
+                const roosterBestand3 = beschikbareRooster[onderwijsNiveau3]?.[keuzeModule3]?.[groepAantal3];
+                if (roosterBestand3) {
+                    roosterAfbeeldingContainer3.style.display = 'block';
+                    roosterAfbeelding3.src = `./${roosterBestand3}`;
+                    downloadButton.style.display = 'block';
+                    downloadButton.onclick = function (event) {
+                        event.preventDefault();
+
+                        const pdfFileName = roosterBestand3.replace('.png', '.pdf');
+                        const link = document.createElement('a');
+                        link.href = `./${pdfFileName}`;
+                        link.target = '_blank'; // Open in a new tab
+                        link.click();
+                    };
                 } else {
-                    roosterImageContainer.style.display = 'none';
+                    roosterAfbeeldingContainer3.style.display = 'none';
+                    downloadButton.style.display = 'none';
                 }
             } else {
-                roosterImageContainer.style.display = 'none';
+                roosterAfbeeldingContainer3.style.display = 'none';
+                downloadButton.style.display = 'none';
             }
         }
 
-        document.getElementById('educationLevel').addEventListener('change', () => {
-            updateElectiveModules();
-            updateGroupCount();
+        document.getElementById('onderwijsNiveau').addEventListener('change', () => {
+            werkKeuzeModulesBij1();
+            werkGroepAantalBij3();
         });
-        document.getElementById('electiveModule').addEventListener('change', () => {
-            updateSelectedModulesDisplay();
-            updateGroupCount();
+        document.getElementById('keuzeModule').addEventListener('change', () => {
+            werkGeselecteerdeModulesWeergaveBij2();
+            werkGroepAantalBij3();
         });
-        document.getElementById('numberOfStudents').addEventListener('input', updateGroupCount);
+        document.getElementById('aantalLeerlingen').addEventListener('input', werkGroepAantalBij3);
 
-        // Initial update based on the default selected value
-        updateElectiveModules();
-        updateGroupCount();
+        document.getElementById('aantalLeerlingen').addEventListener('input', function () {
+            const aantalLeerlingen = this.value;
+            const foutMelding = document.getElementById('aantalLeerlingenFout');
+
+            if (aantalLeerlingen === '') {
+                foutMelding.style.display = 'none';
+                this.setCustomValidity('');
+            } else if (aantalLeerlingen < 40 || aantalLeerlingen > 160) {
+                foutMelding.style.display = 'block';
+                this.setCustomValidity('Het aantal leerlingen moet tussen 40 en 160 liggen.');
+            } else {
+                foutMelding.style.display = 'none';
+                this.setCustomValidity('');
+            }
+        });
+
+        // Initial update based on the default
+        werkKeuzeModulesBij1();
+        werkGroepAantalBij3();
+
+        let hoverTimeout;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const aankomsttijdInput = document.getElementById('aankomsttijd');
+            const vertrektijdInput = document.getElementById('vertrektijd');
+
+            aankomsttijdInput.addEventListener('mouseenter', () => scheduleHoverMessage(aankomsttijdInput.dataset.hoverMessage, aankomsttijdInput));
+            aankomsttijdInput.addEventListener('mouseleave', cancelHoverMessage);
+
+            vertrektijdInput.addEventListener('mouseenter', () => scheduleHoverMessage(vertrektijdInput.dataset.hoverMessage, vertrektijdInput));
+            vertrektijdInput.addEventListener('mouseleave', cancelHoverMessage);
+        });
+
+        function scheduleHoverMessage(message, element) {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = setTimeout(() => showHoverMessage(message, element), 200); // Add a delay of 200 ms
+        }
+
+        function cancelHoverMessage() {
+            clearTimeout(hoverTimeout);
+            hideHoverMessage();
+        }
+
+        function showHoverMessage(message, element) {
+            let hoverMessageElement = document.querySelector('.hover-message');
+            if (!hoverMessageElement) {
+                hoverMessageElement = document.createElement('div');
+                hoverMessageElement.className = 'hover-message';
+                document.body.appendChild(hoverMessageElement);
+            }
+            hoverMessageElement.textContent = message;
+            hoverMessageElement.style.display = 'block';
+            hoverMessageElement.style.opacity = '1';
+
+            const rect = element.getBoundingClientRect();
+            const scrollY = window.scrollY || window.pageYOffset;
+
+            // Debug logging
+            console.log('Element top:', rect.top);
+            console.log('Scroll Y:', scrollY);
+            console.log('Hover message height:', hoverMessageElement.offsetHeight);
+
+            hoverMessageElement.style.left = `${rect.left + window.scrollX}px`;
+            hoverMessageElement.style.top = `${rect.top + scrollY - hoverMessageElement.offsetHeight + 10}px`; // Position above the element with some margin
+        }
+
+        function hideHoverMessage() {
+            const hoverMessageElement = document.querySelector('.hover-message');
+            if (hoverMessageElement) {
+                hoverMessageElement.style.opacity = '0';
+                setTimeout(() => {
+                    hoverMessageElement.style.display = 'none';
+                }, 300); // Wait for the transition to complete
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+    const foodInputs = document.querySelectorAll('input[type="checkbox"][name="snack"], input[type="checkbox"][name="lunch"]');
+    const foodSummaryDiv = document.getElementById('foodSummary');
+    const totalPriceSpan = document.getElementById('totalPrice');
+
+    foodInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            console.log('Checkbox changed:', this.id);
+            const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
+            if (amountInput) {
+                console.log('Found amount input:', amountInput.id);
+                amountInput.disabled = !this.checked;
+                if (!this.checked) {
+                    amountInput.value = 0;
+                }
+            } else {
+                console.log('No amount input found for:', this.id);
+            }
+            updateFoodSummary();
+        });
+
+        const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
+        if (amountInput) {
+            console.log('Adding input event for amount input:', amountInput.id);
+            amountInput.addEventListener('input', updateFoodSummary);
+        } else {
+            console.log('No amount input found during initialization for:', input.id);
+        }
+    });
+
+    function updateFoodSummary() {
+    let totalPrice = 0;
+    foodSummaryDiv.innerHTML = '';
+    console.log('Updating food summary');
+
+    foodInputs.forEach(input => {
+        const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
+        if (input.checked && amountInput && amountInput.value > 0) {
+            const itemTotal = (input.value * amountInput.value).toFixed(2);
+            totalPrice += parseFloat(itemTotal);
+            const itemSummary = document.createElement('div');
+            const itemName = input.labels[0].innerText.split(':')[0]; // Extract the name before the colon
+            itemSummary.textContent = `${amountInput.value} ${itemName}: €${itemTotal}`;
+            foodSummaryDiv.appendChild(itemSummary);
+            console.log('Added item to summary:', itemSummary.textContent);
+        } else if (input.checked && !amountInput) {
+            const itemSummary = document.createElement('div');
+            itemSummary.textContent = `${input.labels[0].innerText}`;
+            foodSummaryDiv.appendChild(itemSummary);
+            console.log('Added item without amount to summary:', itemSummary.textContent);
+        }
+    });
+
+    totalPriceSpan.textContent = totalPrice.toFixed(2);
+    console.log('Total price:', totalPriceSpan.textContent);
+}
+});
+
+document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        console.log('Checkbox toggled:', this.id);
+        const inputField = this.closest('.snack-option').querySelector('input[type="number"]');
+        if (inputField) {
+            inputField.disabled = !this.checked;
+            if (!this.checked) {
+                inputField.value = 0; // Reset the value if checkbox is unchecked
+            }
+            console.log('Toggled input field:', inputField.id, 'disabled:', inputField.disabled);
+        } else {
+            console.log('No input field found for:', this.id);
+        }
+    });
+});
+
+
     </script>
 </body>
 </html>

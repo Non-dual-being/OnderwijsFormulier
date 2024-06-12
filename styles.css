@@ -1,38 +1,418 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Avenir', sans-serif;
     margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    justify-content: center; /* Centreren over de verticale as */
+    align-items: center; /* Centreren over de horizontale as */
+
 }
 
 h1 {
-    color: #333;
+    color: #DC493A;
+    font: 32px Montserrat, sans-serif;
+    margin: 0px 0px 32px;
+    position: relative;
+    text-align: center;
+    
 }
 
+
 form {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+    margin-bottom: 20px;
+    border: 1px solid black; 
+    padding: 30px; 
+    background-color: #f2f2f2; /* Subtiele achtergrondkleur */
+}
+
+fieldset p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+fieldset ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+fieldset ul li {
+    margin: 5px 0;
+}
+
+.informative-text {
+    font-size: 16px;
+    background-color: #081540; /* Match the footer color */
+    padding: 15px;
+    color: white; /* White text for contrast */
+    border-radius: 5px;
+    border: 1px solid #e0e0e0; /* Lichtgrijze rand */
+}
+
+.informative-text h4 {
+    color: #DC493A;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.informative-text p {
+    margin-left: 10px; /* Indent the text */
+}
+
+.informative-text ul {
+    list-style: disc;
+    margin-left: 20px; /* Align with headers */
+    font-size: 1em; /* Standard font size */
+    padding-left: 20px;
+    margin-top: 10px;
+    color: white; /* Ensure text is white for contrast */
+}
+
+.informative-text ul.secondary-list {
+    margin-left: 40px; /* Verdere links inspringen voor de tweede opsomming */
+    font-size: 0.9em; /* Iets kleiner lettertype voor de tweede opsomming */
+    color: white; /* Ensure text is white for contrast */
+}
+
+.overview-section {
+    background-color: #081540; /* Match the information section background */
+    color: white; /* White text for contrast */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 10px; /* Add some margin to separate from the gray background */
+}
+
+.overview-section legend {
+    font: 24px Avenir, sans-serif;
+    font-weight: normal;
+    color: #DC493A;
+    margin-left: 10px;
+}
+
+.overview-section h3, .overview-section h4 {
+    color: #DC493A; /* Similar to the information section */
+}
+
+.overview-section p, .overview-section ul {
+    color: white; /* Ensure text is white for contrast */
+}
+
+.overview-section ul {
+    list-style: disc;
+    margin-left: 20px; /* Align with headers */
+    font-size: 1em; /* Standard font size */
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+legend {
+    font: 20px Avenir, sans-serif;
+    font-weight: normal;
+    color: #DC493A;
+    font-weight: bold;
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
+    font-weight: bold;
+    text-align: left; 
 }
 
-select, button {
+input, select, button {
     width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.foutmelding {
+    display: none;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+h3 {
+    font: 18px BwNista, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #DC493A;
+    margin: 0px 0px 10px;
+    font-weight: bold;
+}
+
+p {
     margin: 5px 0;
 }
 
-#roosterImageContainer {
+
+
+#roosterAfbeeldingContainer {
     display: none;
     margin-top: 20px;
     border: 2px solid #ccc;
     padding: 10px;
     max-height: 300px;
     overflow: auto;
-    background-color: #f9f9f9;
+    background-color: #ede6e6;
+    border-radius: 5px;
 }
-#roosterImage {
+
+#roosterAfbeelding {
     width: 100%;
     height: auto;
+}
+
+#downloadRooster {
+    background-color: #D93134; /* Red color matching the screenshot */
+    color: white; /* White text */
+    border: 2px solid #081540;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+#downloadRooster:hover {
+    color: #B72829; /* Darker red on hover */
+    font-weight: bold;
+    background-color: #081540;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+    
+#downloadRooster {
+    background-color: #D93134; /* Red color matching the screenshot */
+    color: white; /* White text */
+    border: 2px solid #081540;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+
+h4 .subtitle_h4 {
+    display: block;
+    font-size: 0.8em;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.subtitle {
+    display: block;
+    font-style: italic;
+    font-size: 1em;
+    color: #555; /* Adjust color as needed */
+    margin-top: -3px; /* Adjust to position the subtitle closer to the label */
+    margin-bottom: 8px; /* Adjust spacing between the subtitle and the next element */
+}
+
+h5{
+
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.snacks-heading {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0;
+    border: 5px solid #D93134; /* Red border */
+    padding: 10px;
+    background-color: #081540; /* Light grey background */
+    color: white; /* Dark blue text */
+}
+
+.subtitle {
+    display: block;
+    font-size: 0.9em;
+    color: #555; /* Adjust color as needed */
+    margin-top: -6px; /* Adjust to position the subtitle closer to the label */
+    margin-bottom: 8px; /* Adjust spacing between the subtitle and the next element */
+}
+
+.snack-option {
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #fff; /* White background */
+    border-radius: 5px;
+}
+
+.snack-option label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.snack-option .subtitle {
+    display: block;
+    margin-top: -3px;
+    font-size: 0.9em;
+    font-style: italic;
+    color: #777;
+}
+
+.snack-option .input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.snack-option .input-group label {
+    margin: 0 10px 0 0;
+}
+
+.snack-option .input-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.snack-option .input-group input[type="number"] {
+    width: 60px;
+}
+
+.lunch-heading {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0;
+    border: 5px solid #D93134; /* Red border */
+    padding: 10px;
+    background-color: #081540; /* Light grey background */
+    color: white; /* Dark blue text */
+}
+
+.lunch-section {
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff; /* White background */
+}
+
+.lunch-option {
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;  /* Chrome, Safari, Opera */
+    -moz-appearance: none;     /* Firefox */
+    appearance: none;          /* Standaard specificatie */
+    width: 15px;  /* Maak de checkboxes kleiner */
+    height: 15px; /* Maak de checkboxes kleiner */
+    background-color: white; /* Achtergrondkleur 1 */
+    border: 3px solid #D93134;
+    border-radius: 5px;  /* Rond de randjes af */
+    cursor: pointer;
+    margin: 0 5px 0 10px; /* Pas de marges aan zoals nodig */
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #081540; /* Achtergrondkleur wanneer aangevinkt */
+    border: 3px solid white;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "\2714"; /* Unicode-teken voor een vinkje */
+    color: white; /* Kleur van het vinkje */
+    font-size: 12px; /* Groote van het vinkje */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(217, 49, 52, 0.9); /* 90% transparent red color for the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners for the scrollbar thumb */
+    border: 2px solid transparent; /* Add some padding around the thumb */
+    background-clip: content-box; /* Clip the background of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(177, 42, 42, 0.9); /* 90% transparent darker red when hovering */
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.5); /* 50% transparent white color for the scrollbar track */
+    border-radius: 5px; /* Rounded corners for the scrollbar track */
+}
+
+::-webkit-scrollbar-track:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly less transparent white when hovering */
+}
+
+::-webkit-scrollbar-button {
+    background-color: #D93134; /* Red color for the scrollbar buttons */
+    border-radius: 5px; /* Rounded corners for the scrollbar buttons */
+}
+
+::-webkit-scrollbar-button:hover {
+    background-color: #B12A2A; /* Darker red when hovering */
+}
+
+/* Reset the default scrollbar styles */
+html {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: rgba(217, 49, 52, 0.9) rgba(255, 255, 255, 0.5); /* For Firefox */
+}
+
+/* For Firefox */
+html::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: rgba(217, 49, 52, 0.9);
+    border-radius: 5px;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+html::-webkit-scrollbar-button {
+    background-color: #D93134;
+    border-radius: 5px;
+}
+
+.hover-message {
+    position: absolute;
+    background-color: #081540;/* Red background color */
+    color: white; /* White text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid white; /* Dark blue border color */
+    display: none;
+    z-index: 2000; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: max(7px, 0.7vw);
 }
