@@ -213,18 +213,29 @@
                 <input type="checkbox" id="eigenPicknickCheckbox" name="lunch" value="0">
             </div>
         </fieldset>
-
         <fieldset>
             <legend>Overzicht totaalprijs</legend>
-            <div class="informative-text">
-            <h3>eten en drinken</h3>
-            <div id="foodSummary">
-                
-                <!-- Selected food options will be displayed here -->
+            <div class="informative-text overview-section">
+                <div class="price-summary-section">
+                    <div class="summary-category">
+                        <h3>Bezoek</h3>
+                        <div id="bezoek" class="summary-item">
+                            <!-- Selected visit price displayed here -->
+                        </div>
+                    </div>
+                    <div class="summary-category">
+                        <h3>Eten en drinken</h3>
+                        <div id="foodSummary" class="summary-category">
+                            <!-- Selected food options will be displayed here -->
+                        </div>
+                    </div>
+                    <div class="total-price">
+                        <span>Totaalprijs: €<span id="totalPrice">0.00</span></span>
+                    </div>
+                </div>
             </div>
-            <h2>Totaalprijs: €<span id="totalPrice">0.00</span></h2>
-        </div>
         </fieldset>
+        
         
     <script>
         const onderwijsModules = {
@@ -492,118 +503,131 @@
         // Initial update based on the default
         werkKeuzeModulesBij1();
         werkGroepAantalBij3();
-
+        
         let hoverTimeout;
 
         document.addEventListener('DOMContentLoaded', () => {
-            const aankomsttijdInput = document.getElementById('aankomsttijd');
-            const vertrektijdInput = document.getElementById('vertrektijd');
+    const aankomsttijdInput = document.getElementById('aankomsttijd');
+    const vertrektijdInput = document.getElementById('vertrektijd');
 
-            aankomsttijdInput.addEventListener('mouseenter', () => scheduleHoverMessage(aankomsttijdInput.dataset.hoverMessage, aankomsttijdInput));
-            aankomsttijdInput.addEventListener('mouseleave', cancelHoverMessage);
+    aankomsttijdInput.addEventListener('mouseenter', () => {
+        scheduleHoverMessage(aankomsttijdInput.dataset.hoverMessage, aankomsttijdInput);
+    });
+    aankomsttijdInput.addEventListener('mouseleave', cancelHoverMessage);
 
-            vertrektijdInput.addEventListener('mouseenter', () => scheduleHoverMessage(vertrektijdInput.dataset.hoverMessage, vertrektijdInput));
-            vertrektijdInput.addEventListener('mouseleave', cancelHoverMessage);
-        });
+    vertrektijdInput.addEventListener('mouseenter', () => {
+        scheduleHoverMessage(vertrektijdInput.dataset.hoverMessage, vertrektijdInput);
+    });
+    vertrektijdInput.addEventListener('mouseleave', cancelHoverMessage);
+});
 
-        function scheduleHoverMessage(message, element) {
-            clearTimeout(hoverTimeout);
-            hoverTimeout = setTimeout(() => showHoverMessage(message, element), 200); // Add a delay of 200 ms
-        }
+function scheduleHoverMessage(message, element) {
+    clearTimeout(hoverTimeout);
+    hoverTimeout = setTimeout(() => showHoverMessage(message, element), 200);
+}
 
-        function cancelHoverMessage() {
-            clearTimeout(hoverTimeout);
-            hideHoverMessage();
-        }
+function cancelHoverMessage() {
+    clearTimeout(hoverTimeout);
+    hideHoverMessage();
+}
 
-        function showHoverMessage(message, element) {
-            let hoverMessageElement = document.querySelector('.hover-message');
-            if (!hoverMessageElement) {
-                hoverMessageElement = document.createElement('div');
-                hoverMessageElement.className = 'hover-message';
-                document.body.appendChild(hoverMessageElement);
-            }
-            hoverMessageElement.textContent = message;
-            hoverMessageElement.style.display = 'block';
-            hoverMessageElement.style.opacity = '1';
+function showHoverMessage(message, element) {
+    let hoverMessageElement = document.querySelector('.hover-message');
+    if (!hoverMessageElement) {
+        hoverMessageElement = document.createElement('div');
+        hoverMessageElement.className = 'hover-message';
+        document.body.appendChild(hoverMessageElement);
+    }
+    hoverMessageElement.textContent = message;
+    hoverMessageElement.style.display = 'block';
+    hoverMessageElement.style.opacity = '1';
 
-            const rect = element.getBoundingClientRect();
-            const scrollY = window.scrollY || window.pageYOffset;
+    const rect = element.getBoundingClientRect();
+    const scrollY = window.scrollY || window.pageYOffset;
 
-            // Debug logging
-            console.log('Element top:', rect.top);
-            console.log('Scroll Y:', scrollY);
-            console.log('Hover message height:', hoverMessageElement.offsetHeight);
+    hoverMessageElement.style.left = `${rect.left + window.scrollX}px`;
+    hoverMessageElement.style.top = `${rect.top + scrollY - hoverMessageElement.offsetHeight +10}px`;
+}
 
-            hoverMessageElement.style.left = `${rect.left + window.scrollX}px`;
-            hoverMessageElement.style.top = `${rect.top + scrollY - hoverMessageElement.offsetHeight + 10}px`; // Position above the element with some margin
-        }
-
-        function hideHoverMessage() {
-            const hoverMessageElement = document.querySelector('.hover-message');
-            if (hoverMessageElement) {
-                hoverMessageElement.style.opacity = '0';
-                setTimeout(() => {
-                    hoverMessageElement.style.display = 'none';
-                }, 300); // Wait for the transition to complete
-            }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
+function hideHoverMessage() {
+    const hoverMessageElement = document.querySelector('.hover-message');
+    if (hoverMessageElement) {
+        hoverMessageElement.style.opacity = '0';
+        setTimeout(() => {
+            hoverMessageElement.style.display = 'none';
+        }, 300);
+    }
+}
+    document.addEventListener('DOMContentLoaded', () => {
     const foodInputs = document.querySelectorAll('input[type="checkbox"][name="snack"], input[type="checkbox"][name="lunch"]');
     const foodSummaryDiv = document.getElementById('foodSummary');
     const totalPriceSpan = document.getElementById('totalPrice');
+    const bezoekDiv = document.getElementById('bezoek');
 
     foodInputs.forEach(input => {
         input.addEventListener('change', function() {
-            console.log('Checkbox changed:', this.id);
             const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
             if (amountInput) {
-                console.log('Found amount input:', amountInput.id);
                 amountInput.disabled = !this.checked;
                 if (!this.checked) {
                     amountInput.value = 0;
                 }
-            } else {
-                console.log('No amount input found for:', this.id);
             }
             updateFoodSummary();
         });
 
         const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
         if (amountInput) {
-            console.log('Adding input event for amount input:', amountInput.id);
             amountInput.addEventListener('input', updateFoodSummary);
-        } else {
-            console.log('No amount input found during initialization for:', input.id);
         }
     });
+
+    function calculateVisitPrice() {
+        const aantalLeerlingen = parseInt(document.getElementById('aantalLeerlingen').value, 10) || 0;
+        const totaalBegeleiders = parseInt(document.getElementById('totaalbegeleiders').value, 10) || 0;
+        const prijsPerLeerling = 20;
+
+        const gratisBegeleiders = Math.floor(aantalLeerlingen / 8);
+        const teBetalenBegeleiders = Math.max(0, totaalBegeleiders - gratisBegeleiders);
+
+        const bezoekPrijs = (aantalLeerlingen * prijsPerLeerling) + (teBetalenBegeleiders * prijsPerLeerling);
+        return bezoekPrijs.toFixed(2);
+    }
+
 
     function updateFoodSummary() {
-    let totalPrice = 0;
-    foodSummaryDiv.innerHTML = '';
-    console.log('Updating food summary');
+        let totalPrice = 0;
+        foodSummaryDiv.innerHTML = '';
 
-    foodInputs.forEach(input => {
-        const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
-        if (input.checked && amountInput && amountInput.value > 0) {
-            const itemTotal = (input.value * amountInput.value).toFixed(2);
-            totalPrice += parseFloat(itemTotal);
-            const itemSummary = document.createElement('div');
-            const itemName = input.labels[0].innerText.split(':')[0]; // Extract the name before the colon
-            itemSummary.textContent = `${amountInput.value} ${itemName}: €${itemTotal}`;
-            foodSummaryDiv.appendChild(itemSummary);
-            console.log('Added item to summary:', itemSummary.textContent);
-        } else if (input.checked && !amountInput) {
-            const itemSummary = document.createElement('div');
-            itemSummary.textContent = `${input.labels[0].innerText}`;
-            foodSummaryDiv.appendChild(itemSummary);
-            console.log('Added item without amount to summary:', itemSummary.textContent);
-        }
-    });
+        foodInputs.forEach(input => {
+            const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
+            if (input.checked && amountInput && amountInput.value > 0) {
+                const itemTotal = (input.value * amountInput.value).toFixed(2);
+                totalPrice += parseFloat(itemTotal);
+                const itemSummary = document.createElement('div');
+                itemSummary.className = 'summary-item';
+                const itemName = input.labels[0].innerText.split(':')[0]; // Extract the name before the colon
+                itemSummary.innerHTML = `<span>${amountInput.value} ${itemName}:</span><span>€${itemTotal}</span>`;
+                foodSummaryDiv.appendChild(itemSummary);
+            } else if (input.checked && !amountInput) {
+                const itemSummary = document.createElement('div');
+                itemSummary.className = 'summary-item';
+                itemSummary.innerHTML = `<span>${input.labels[0].innerText}</span>`;
+                foodSummaryDiv.appendChild(itemSummary);
+            }
+        });
 
-    totalPriceSpan.textContent = totalPrice.toFixed(2);
-    console.log('Total price:', totalPriceSpan.textContent);
-}
+        const bezoekPrijs = calculateVisitPrice();
+        bezoekDiv.innerHTML = `<span>Bezoekprijs:</span><span>€${bezoekPrijs}</span>`;
+        totalPrice += parseFloat(bezoekPrijs);
+
+        totalPriceSpan.textContent = totalPrice.toFixed(2);
+    }
+
+    document.getElementById('aantalLeerlingen').addEventListener('input', updateFoodSummary);
+    document.getElementById('totaalbegeleiders').addEventListener('input', updateFoodSummary);
+
+    updateFoodSummary(); // Initial call to set the summary
 });
 
 document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {

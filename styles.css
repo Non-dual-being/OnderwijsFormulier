@@ -342,6 +342,46 @@ input[type="checkbox"]:checked::after {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.price-summary-section {
+    margin-top: 20px;
+}
+
+.price-summary-section h3 {
+    font-size: 1.2em;
+    color: #DC493A;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.price-summary-section .summary-category {
+    margin-bottom: 20px;
+}
+
+.price-summary-section .summary-category h4 {
+    font-size: 1em;
+    color: #DC493A;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.price-summary-section .summary-category .summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.price-summary-section .summary-category .summary-item span {
+    font-size: 1.1em;
+    color: #fff;
+}
+
+.price-summary-section .total-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+}
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
     width: 8px; /* Width of the scrollbar */
