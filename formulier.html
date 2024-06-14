@@ -16,6 +16,7 @@
             
             <label for="emailadres">E-mailadres</label>
             <input type="email" id="emailadres" name="emailadres" required>
+            <div id="emailError" class="foutmeldingmail">Vul een geldig e-mailadres in.</div>
             
             <label for="telefoonnummer">Telefoonnummer</label>
             <input type="tel" id="telefoonnummer" name="telefoonnummer" required>
@@ -39,7 +40,7 @@
             <input type="date" id="bezoekdatum" name="bezoekdatum" required>
             
             <label for="aankomsttijd">Wij verwachten u om</label>
-            <input type="time" id="aankomsttijd" name="aankomsttijd" value="09:45" readonly required data-hover-message="Standaard aankomsttijd">
+            <input type="time" id="aankomsttijd" name="aankomsttijd" value="10:00" readonly required data-hover-message="Standaard aankomsttijd">
 
             <label for="vertrektijd">Het vertrek is om</label>
             <input type="time" id="vertrektijd" name="vertrektijd" value="15:00" readonly required data-hover-message="Standaard vertrektijd">
@@ -89,7 +90,7 @@
             </div>
 
             <label for="aantalLeerlingen">Vul het aantal leerlingen in</label>
-            <input type="number" id="aantalLeerlingen" name="aantalLeerlingen" min="40" max="160" step="1" required  placeholder="min=40, max=160">
+            <input type="number" id="aantalLeerlingen" name="aantalLeerlingen" min="40" max="160" step="1" required placeholder="min=40, max=160">
             <div id="aantalLeerlingenFout" class="foutmelding">Vul alstublieft een geldig aantal van 40 tot en met 160 in.</div>
         </fieldset>
 
@@ -119,15 +120,16 @@
                 </div>
             </div>
         </fieldset>
+        
         <fieldset>
             <legend>Eten en Drinken</legend>
             <div class="informative-text">
-                <h4>Standaard Inbegrepen</h4>
+                <h4>STANDAARD INBEGREPEN</h4>
                 <ul>
                     <li>Koffie en thee voor begeleiders bij aankomst.</li>
                     <li>Vegetarische snack en plantaardige chocolademelk voor leerlingen tijdens de lesmodule voedselinnovatie</li>
                 </ul>
-                <h4>Optioneel bij te boeken</h4>
+                <h4>OPTIETIONEEL BIJ TE BOEKEN</h4>
                 <h5>Snacks</h5>
                 <ul>
                     <li>remiseBreak, kazerneBreak en fortgrachtBreak</li>
@@ -188,7 +190,7 @@
                     </div>
                 </div>
             </div>
-            <h4 class="lunch-heading">Lunchaanbod </h4>
+            <h4 class="lunch-heading">Lunch aanbod </h4>
             <span class="subtitle">Vink aan en vul een aantal in</span>
             <div class="snack-option">
                 <label for="remiseLunchCheckbox">Remiselunch: friet, saus, snack en pakje drinken</label>
@@ -235,8 +237,8 @@
                 </div>
             </div>
         </fieldset>
-        
-        
+    </form>
+    
     <script>
         const onderwijsModules = {
             primairOnderwijs: {
@@ -342,10 +344,10 @@
                     "8": "Voorbeeld_PrimairOnderwijs_EarthWatch_8.png",
                     "9": "Voorbeeld_PrimairOnderwijs_EarthWatch_9.png",
                     "10": "Voorbeeld_PrimairOnderwijs_EarthWatch_10.png"
-                }
-            },
-            voortgezetOnderbouw: {
-                "Minecraft windenergie speurtocht": {
+                    }
+                    },
+                    voortgezetOnderbouw: {
+                    "Minecraft windenergie speurtocht": {
                     "3": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_3.png",
                     "4": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_4.png",
                     "5": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_5.png",
@@ -354,8 +356,8 @@
                     "8": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_8.png",
                     "9": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_9.png",
                     "10": "Voorbeeld_VOOnderbouw_MinecraftWindenergie_10.png"
-                },
-                "Stop de Klimaat Klok": {
+                    },
+                    "Stop de Klimaat Klok": {
                     "3": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_3.png",
                     "4": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_4.png",
                     "5": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_5.png",
@@ -364,10 +366,10 @@
                     "8": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_8.png",
                     "9": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_9.png",
                     "10": "Voorbeeld_VOOnderbouw_StopDeKlimaatKlok_10.png"
-                }
-            },
-            voortgezetBovenbouw: {
-                "Crisismanagement": {
+                    }
+                    },
+                    voortgezetBovenbouw: {
+                    "Crisismanagement": {
                     "3": "Voorbeeld_VOBovenbouw_Crisismanagement_3.png",
                     "4": "Voorbeeld_VOBovenbouw_Crisismanagement_4.png",
                     "5": "Voorbeeld_VOBovenbouw_Crisismanagement_5.png",
@@ -376,277 +378,314 @@
                     "8": "Voorbeeld_VOBovenbouw_Crisismanagement_8.png",
                     "9": "Voorbeeld_VOBovenbouw_Crisismanagement_9.png",
                     "10": "Voorbeeld_VOBovenbouw_Crisismanagement_10.png"
-                }
-            }
-        };
+                    }
+                    }
+                    };
 
         function werkKeuzeModulesBij1() {
-            const onderwijsNiveau1 = document.getElementById('onderwijsNiveau').value;
-            const keuzeModuleSelect1 = document.getElementById('keuzeModule');
+        const onderwijsNiveau1 = document.getElementById('onderwijsNiveau').value;
+        const keuzeModuleSelect1 = document.getElementById('keuzeModule');
 
-            // Reset de keuzemodules
-            keuzeModuleSelect1.innerHTML = '';
+        // Reset de keuzemodules
+        keuzeModuleSelect1.innerHTML = '';
 
-            if (onderwijsNiveau1 in onderwijsModules) {
-                // Vul de keuzemodules in
-                onderwijsModules[onderwijsNiveau1].keuze.forEach(module1 => {
-                    const optie1 = document.createElement('option');
-                    optie1.value = module1;
-                    optie1.textContent = module1;
-                    keuzeModuleSelect1.appendChild(optie1);
-                });
-            }
+        if (onderwijsNiveau1 in onderwijsModules) {
+            // Vul de keuzemodules in
+            onderwijsModules[onderwijsNiveau1].keuze.forEach(module1 => {
+                const optie1 = document.createElement('option');
+                optie1.value = module1;
+                optie1.textContent = module1;
+                keuzeModuleSelect1.appendChild(optie1);
+            });
+        }
 
-            werkGeselecteerdeModulesWeergaveBij2();
+        werkGeselecteerdeModulesWeergaveBij2();
         }
 
         function werkGeselecteerdeModulesWeergaveBij2() {
-            const onderwijsNiveau2 = document.getElementById('onderwijsNiveau').value;
-            const keuzeModule2 = document.getElementById('keuzeModule').value;
+        const onderwijsNiveau2 = document.getElementById('onderwijsNiveau').value;
+        const keuzeModule2 = document.getElementById('keuzeModule').value;
 
-            // Werk standaardmodules bij
-            const standaardModulesLijst2 = document.getElementById('standaardModulesLijst');
-            standaardModulesLijst2.innerHTML = '';
-            if (onderwijsNiveau2 in onderwijsModules) {
-                onderwijsModules[onderwijsNiveau2].standaard.forEach(module2 => {
-                    const lijstItem2 = document.createElement('li');
-                    lijstItem2.textContent = module2;
-                    standaardModulesLijst2.appendChild(lijstItem2);
-                });
-            }
+        // Werk standaardmodules bij
+        const standaardModulesLijst2 = document.getElementById('standaardModulesLijst');
+        standaardModulesLijst2.innerHTML = '';
+        if (onderwijsNiveau2 in onderwijsModules) {
+            onderwijsModules[onderwijsNiveau2].standaard.forEach(module2 => {
+                const lijstItem2 = document.createElement('li');
+                lijstItem2.textContent = module2;
+                standaardModulesLijst2.appendChild(lijstItem2);
+            });
+        }
 
-            // Werk gekozen keuzemodule bij
-            const gekozenKeuzeModule2 = document.getElementById('gekozenKeuzeModule');
-            gekozenKeuzeModule2.textContent = keuzeModule2 || 'Geen keuzevak geselecteerd';
+        // Werk gekozen keuzemodule bij
+        const gekozenKeuzeModule2 = document.getElementById('gekozenKeuzeModule');
+        gekozenKeuzeModule2.textContent = keuzeModule2 || 'Geen keuzevak geselecteerd';
         }
 
         function werkGroepAantalBij3() {
-            const aantalLeerlingen3 = parseInt(document.getElementById('aantalLeerlingen').value, 10);
-            const onderwijsNiveau3 = document.getElementById('onderwijsNiveau').value;
-            const keuzeModule3 = document.getElementById('keuzeModule').value;
-            let groepAantal3 = '';
+        const aantalLeerlingen3 = parseInt(document.getElementById('aantalLeerlingen').value, 10);
+        const onderwijsNiveau3 = document.getElementById('onderwijsNiveau').value;
+        const keuzeModule3 = document.getElementById('keuzeModule').value;
+        let groepAantal3 = '';
 
-            if (aantalLeerlingen3 >= 40 && aantalLeerlingen3 <= 50) {
-                groepAantal3 = 3;
-            } else if (aantalLeerlingen3 >= 51 && aantalLeerlingen3 <= 65) {
-                groepAantal3 = 4;
-            } else if (aantalLeerlingen3 >= 66 && aantalLeerlingen3 <= 80) {
-                groepAantal3 = 5;
-            } else if (aantalLeerlingen3 >= 81 && aantalLeerlingen3 <= 100) {
-                groepAantal3 = 6;
-            } else if (aantalLeerlingen3 >= 101 && aantalLeerlingen3 <= 120) {
-                groepAantal3 = 7;
-            } else if (aantalLeerlingen3 >= 121 && aantalLeerlingen3 <= 130) {
-                groepAantal3 = 8;
-            } else if (aantalLeerlingen3 >= 131 && aantalLeerlingen3 <= 150) {
-                groepAantal3 = 9;
-            } else if (aantalLeerlingen3 >= 151 && aantalLeerlingen3 <= 160) {
-                groepAantal3 = 10;
-            }
+        if (aantalLeerlingen3 >= 40 && aantalLeerlingen3 <= 50) {
+            groepAantal3 = 3;
+        } else if (aantalLeerlingen3 >= 51 && aantalLeerlingen3 <= 65) {
+            groepAantal3 = 4;
+        } else if (aantalLeerlingen3 >= 66 && aantalLeerlingen3 <= 80) {
+            groepAantal3 = 5;
+        } else if (aantalLeerlingen3 >= 81 && aantalLeerlingen3 <= 100) {
+            groepAantal3 = 6;
+        } else if (aantalLeerlingen3 >= 101 && aantalLeerlingen3 <= 120) {
+            groepAantal3 = 7;
+        } else if (aantalLeerlingen3 >= 121 && aantalLeerlingen3 <= 130) {
+            groepAantal3 = 8;
+        } else if (aantalLeerlingen3 >= 131 && aantalLeerlingen3 <= 150) {
+            groepAantal3 = 9;
+        } else if (aantalLeerlingen3 >= 151 && aantalLeerlingen3 <= 160) {
+            groepAantal3 = 10;
+        }
 
-            document.getElementById('groepAantal').textContent = groepAantal3;
-            const roosterAfbeeldingContainer3 = document.getElementById('roosterAfbeeldingContainer');
-            const roosterAfbeelding3 = document.getElementById('roosterAfbeelding');
-            const downloadButton = document.getElementById('downloadRooster');
+        document.getElementById('groepAantal').textContent = groepAantal3;
+        const roosterAfbeeldingContainer3 = document.getElementById('roosterAfbeeldingContainer');
+        const roosterAfbeelding3 = document.getElementById('roosterAfbeelding');
+        const downloadButton = document.getElementById('downloadRooster');
 
-            if (onderwijsNiveau3 && keuzeModule3 && groepAantal3 !== '-') {
-                const roosterBestand3 = beschikbareRooster[onderwijsNiveau3]?.[keuzeModule3]?.[groepAantal3];
-                if (roosterBestand3) {
-                    roosterAfbeeldingContainer3.style.display = 'block';
-                    roosterAfbeelding3.src = `./${roosterBestand3}`;
-                    downloadButton.style.display = 'block';
-                    downloadButton.onclick = function (event) {
-                        event.preventDefault();
+        if (onderwijsNiveau3 && keuzeModule3 && groepAantal3 !== '-') {
+            const roosterBestand3 = beschikbareRooster[onderwijsNiveau3]?.[keuzeModule3]?.[groepAantal3];
+            if (roosterBestand3) {
+                roosterAfbeeldingContainer3.style.display = 'block';
+                roosterAfbeelding3.src = `./${roosterBestand3}`;
+                downloadButton.style.display = 'block';
+                downloadButton.onclick = function (event) {
+                    event.preventDefault();
 
-                        const pdfFileName = roosterBestand3.replace('.png', '.pdf');
-                        const link = document.createElement('a');
-                        link.href = `./${pdfFileName}`;
-                        link.target = '_blank'; // Open in a new tab
-                        link.click();
-                    };
-                } else {
-                    roosterAfbeeldingContainer3.style.display = 'none';
-                    downloadButton.style.display = 'none';
-                }
+                    const pdfFileName = roosterBestand3.replace('.png', '.pdf');
+                    const link = document.createElement('a');
+                    link.href = `./${pdfFileName}`;
+                    link.target = '_blank'; // Open in a new tab
+                    link.click();
+                };
             } else {
                 roosterAfbeeldingContainer3.style.display = 'none';
                 downloadButton.style.display = 'none';
             }
+        } else {
+            roosterAfbeeldingContainer3.style.display = 'none';
+            downloadButton.style.display = 'none';
+        }
         }
 
         document.getElementById('onderwijsNiveau').addEventListener('change', () => {
-            werkKeuzeModulesBij1();
-            werkGroepAantalBij3();
+        werkKeuzeModulesBij1();
+        werkGroepAantalBij3();
         });
         document.getElementById('keuzeModule').addEventListener('change', () => {
-            werkGeselecteerdeModulesWeergaveBij2();
-            werkGroepAantalBij3();
+        werkGeselecteerdeModulesWeergaveBij2();
+        werkGroepAantalBij3();
         });
         document.getElementById('aantalLeerlingen').addEventListener('input', werkGroepAantalBij3);
 
         document.getElementById('aantalLeerlingen').addEventListener('input', function () {
-            const aantalLeerlingen = this.value;
-            const foutMelding = document.getElementById('aantalLeerlingenFout');
+        const aantalLeerlingen = this.value;
+        const foutMelding = document.getElementById('aantalLeerlingenFout');
 
-            if (aantalLeerlingen === '') {
-                foutMelding.style.display = 'none';
-                this.setCustomValidity('');
-            } else if (aantalLeerlingen < 40 || aantalLeerlingen > 160) {
-                foutMelding.style.display = 'block';
-                this.setCustomValidity('Het aantal leerlingen moet tussen 40 en 160 liggen.');
-            } else {
-                foutMelding.style.display = 'none';
-                this.setCustomValidity('');
-            }
+        if (aantalLeerlingen === '') {
+            foutMelding.style.display = 'none';
+            this.setCustomValidity('');
+        } else if (aantalLeerlingen < 40 || aantalLeerlingen > 160) {
+            foutMelding.style.display = 'block';
+            this.setCustomValidity('Het aantal leerlingen moet tussen 40 en 160 liggen.');
+        } else {
+            foutMelding.style.display = 'none';
+            this.setCustomValidity('');
+        }
         });
 
         // Initial update based on the default
         werkKeuzeModulesBij1();
         werkGroepAantalBij3();
-        
+
         let hoverTimeout;
 
         document.addEventListener('DOMContentLoaded', () => {
-    const aankomsttijdInput = document.getElementById('aankomsttijd');
-    const vertrektijdInput = document.getElementById('vertrektijd');
+        const aankomsttijdInput = document.getElementById('aankomsttijd');
+        const vertrektijdInput = document.getElementById('vertrektijd');
 
-    aankomsttijdInput.addEventListener('mouseenter', () => {
-        scheduleHoverMessage(aankomsttijdInput.dataset.hoverMessage, aankomsttijdInput);
-    });
-    aankomsttijdInput.addEventListener('mouseleave', cancelHoverMessage);
+        aankomsttijdInput.addEventListener('mouseenter', () => {
+            scheduleHoverMessage4(aankomsttijdInput.dataset.hoverMessage, aankomsttijdInput);
+        });
+        aankomsttijdInput.addEventListener('mouseleave', cancelHoverMessage5);
 
-    vertrektijdInput.addEventListener('mouseenter', () => {
-        scheduleHoverMessage(vertrektijdInput.dataset.hoverMessage, vertrektijdInput);
-    });
-    vertrektijdInput.addEventListener('mouseleave', cancelHoverMessage);
-});
-
-function scheduleHoverMessage(message, element) {
-    clearTimeout(hoverTimeout);
-    hoverTimeout = setTimeout(() => showHoverMessage(message, element), 200);
-}
-
-function cancelHoverMessage() {
-    clearTimeout(hoverTimeout);
-    hideHoverMessage();
-}
-
-function showHoverMessage(message, element) {
-    let hoverMessageElement = document.querySelector('.hover-message');
-    if (!hoverMessageElement) {
-        hoverMessageElement = document.createElement('div');
-        hoverMessageElement.className = 'hover-message';
-        document.body.appendChild(hoverMessageElement);
-    }
-    hoverMessageElement.textContent = message;
-    hoverMessageElement.style.display = 'block';
-    hoverMessageElement.style.opacity = '1';
-
-    const rect = element.getBoundingClientRect();
-    const scrollY = window.scrollY || window.pageYOffset;
-
-    hoverMessageElement.style.left = `${rect.left + window.scrollX}px`;
-    hoverMessageElement.style.top = `${rect.top + scrollY - hoverMessageElement.offsetHeight +10}px`;
-}
-
-function hideHoverMessage() {
-    const hoverMessageElement = document.querySelector('.hover-message');
-    if (hoverMessageElement) {
-        hoverMessageElement.style.opacity = '0';
-        setTimeout(() => {
-            hoverMessageElement.style.display = 'none';
-        }, 300);
-    }
-}
-    document.addEventListener('DOMContentLoaded', () => {
-    const foodInputs = document.querySelectorAll('input[type="checkbox"][name="snack"], input[type="checkbox"][name="lunch"]');
-    const foodSummaryDiv = document.getElementById('foodSummary');
-    const totalPriceSpan = document.getElementById('totalPrice');
-    const bezoekDiv = document.getElementById('bezoek');
-
-    foodInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
-            if (amountInput) {
-                amountInput.disabled = !this.checked;
-                if (!this.checked) {
-                    amountInput.value = 0;
-                }
-            }
-            updateFoodSummary();
+        vertrektijdInput.addEventListener('mouseenter', () => {
+            scheduleHoverMessage4(vertrektijdInput.dataset.hoverMessage, vertrektijdInput);
+        });
+        vertrektijdInput.addEventListener('mouseleave', cancelHoverMessage5);
         });
 
-        const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
-        if (amountInput) {
-            amountInput.addEventListener('input', updateFoodSummary);
+        function scheduleHoverMessage4(message, element) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => showHoverMessage6(message, element), 200);
         }
-    });
 
-    function calculateVisitPrice() {
-        const aantalLeerlingen = parseInt(document.getElementById('aantalLeerlingen').value, 10) || 0;
-        const totaalBegeleiders = parseInt(document.getElementById('totaalbegeleiders').value, 10) || 0;
-        const prijsPerLeerling = 20;
+        function cancelHoverMessage5() {
+        clearTimeout(hoverTimeout);
+        hideHoverMessage7();
+        }
 
-        const gratisBegeleiders = Math.floor(aantalLeerlingen / 8);
-        const teBetalenBegeleiders = Math.max(0, totaalBegeleiders - gratisBegeleiders);
+        function showHoverMessage6(message, element) {
+        let hoverMessageElement = document.querySelector('.hover-message');
+        if (!hoverMessageElement) {
+            hoverMessageElement = document.createElement('div');
+            hoverMessageElement.className = 'hover-message';
+            document.body.appendChild(hoverMessageElement);
+        }
+        hoverMessageElement.textContent = message;
+        hoverMessageElement.style.display = 'block';
+        hoverMessageElement.style.opacity = '1';
 
-        const bezoekPrijs = (aantalLeerlingen * prijsPerLeerling) + (teBetalenBegeleiders * prijsPerLeerling);
-        return bezoekPrijs.toFixed(2);
-    }
+        const rect = element.getBoundingClientRect();
+        const scrollY = window.scrollY || window.pageYOffset;
 
+        hoverMessageElement.style.left = `${rect.left + window.scrollX}px`;
+        hoverMessageElement.style.top = `${rect.top + scrollY - hoverMessageElement.offsetHeight + 10}px`;
+        }
 
-    function updateFoodSummary() {
-        let totalPrice = 0;
-        foodSummaryDiv.innerHTML = '';
+        function hideHoverMessage7() {
+        const hoverMessageElement = document.querySelector('.hover-message');
+        if (hoverMessageElement) {
+            hoverMessageElement.style.opacity = '0';
+            setTimeout(() => {
+                hoverMessageElement.style.display = 'none';
+            }, 300);
+        }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const foodInputs = document.querySelectorAll('input[type="checkbox"][name="snack"], input[type="checkbox"][name="lunch"]');
+        const foodSummaryDiv = document.getElementById('foodSummary');
+        const totalPriceSpan = document.getElementById('totalPrice');
+        const bezoekDiv = document.getElementById('bezoek');
 
         foodInputs.forEach(input => {
+            input.addEventListener('change', function () {
+                const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
+                if (amountInput) {
+                    amountInput.disabled = !this.checked;
+                    if (!this.checked) {
+                        amountInput.value = 0;
+                    }
+                }
+                updateFoodSummary9();
+            });
+
             const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
-            if (input.checked && amountInput && amountInput.value > 0) {
-                const itemTotal = (input.value * amountInput.value).toFixed(2);
-                totalPrice += parseFloat(itemTotal);
-                const itemSummary = document.createElement('div');
-                itemSummary.className = 'summary-item';
-                const itemName = input.labels[0].innerText.split(':')[0]; // Extract the name before the colon
-                itemSummary.innerHTML = `<span>${amountInput.value} ${itemName}:</span><span>€${itemTotal}</span>`;
-                foodSummaryDiv.appendChild(itemSummary);
-            } else if (input.checked && !amountInput) {
-                const itemSummary = document.createElement('div');
-                itemSummary.className = 'summary-item';
-                itemSummary.innerHTML = `<span>${input.labels[0].innerText}</span>`;
-                foodSummaryDiv.appendChild(itemSummary);
+            if (amountInput) {
+                amountInput.addEventListener('input', updateFoodSummary9);
             }
         });
 
-        const bezoekPrijs = calculateVisitPrice();
-        bezoekDiv.innerHTML = `<span>Bezoekprijs:</span><span>€${bezoekPrijs}</span>`;
-        totalPrice += parseFloat(bezoekPrijs);
+        function calculateVisitPrice8() {
+            const aantalLeerlingen = parseInt(document.getElementById('aantalLeerlingen').value, 10) || 0;
+            const totaalBegeleiders = parseInt(document.getElementById('totaalbegeleiders').value, 10) || 0;
+            const prijsPerLeerling = 20;
 
-        totalPriceSpan.textContent = totalPrice.toFixed(2);
-    }
+            const gratisBegeleiders = Math.floor(aantalLeerlingen / 8);
+            const teBetalenBegeleiders = Math.max(0, totaalBegeleiders - gratisBegeleiders);
 
-    document.getElementById('aantalLeerlingen').addEventListener('input', updateFoodSummary);
-    document.getElementById('totaalbegeleiders').addEventListener('input', updateFoodSummary);
-
-    updateFoodSummary(); // Initial call to set the summary
-});
-
-document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        console.log('Checkbox toggled:', this.id);
-        const inputField = this.closest('.snack-option').querySelector('input[type="number"]');
-        if (inputField) {
-            inputField.disabled = !this.checked;
-            if (!this.checked) {
-                inputField.value = 0; // Reset the value if checkbox is unchecked
-            }
-            console.log('Toggled input field:', inputField.id, 'disabled:', inputField.disabled);
-        } else {
-            console.log('No input field found for:', this.id);
+            const bezoekPrijs = (aantalLeerlingen * prijsPerLeerling) + (teBetalenBegeleiders * prijsPerLeerling);
+            return bezoekPrijs.toFixed(2);
         }
-    });
-});
 
+        function updateFoodSummary9() {
+            let totalPrice = 0;
+            foodSummaryDiv.innerHTML = '';
 
+            foodInputs.forEach(input => {
+                const amountInput = input.closest('.snack-option').querySelector('input[type="number"]');
+                if (input.checked && amountInput && amountInput.value > 0) {
+                    const itemTotal = (input.value * amountInput.value).toFixed(2);
+                    totalPrice += parseFloat(itemTotal);
+                    const itemSummary = document.createElement('div');
+                    itemSummary.className = 'summary-item';
+                    const itemName = input.labels[0].innerText.split(':')[0]; // Extract the name before the colon
+                    itemSummary.innerHTML = `<span>${amountInput.value} ${itemName}:</span><span>€${itemTotal}</span>`;
+                    foodSummaryDiv.appendChild(itemSummary);
+                } else if (input.checked && !amountInput) {
+                    const itemSummary = document.createElement('div');
+                    itemSummary.className = 'summary-item';
+                    itemSummary.innerHTML = `<span>${input.labels[0].innerText}</span>`;
+                    foodSummaryDiv.appendChild(itemSummary);
+                }
+            });
+
+            const bezoekPrijs = calculateVisitPrice8();
+            bezoekDiv.innerHTML = `<span>Bezoekprijs:</span><span>€${bezoekPrijs}</span>`;
+            totalPrice += parseFloat(bezoekPrijs);
+
+            totalPriceSpan.textContent = totalPrice.toFixed(2);
+        }
+
+        document.getElementById('aantalLeerlingen').addEventListener('input', updateFoodSummary9);
+        document.getElementById('totaalbegeleiders').addEventListener('input', updateFoodSummary9);
+
+        updateFoodSummary9(); // Initial call to set the summary
+        });
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            console.log('Checkbox toggled:', this.id);
+            const inputField = this.closest('.snack-option').querySelector('input[type="number"]');
+            if (inputField) {
+                inputField.disabled = !this.checked;
+                if (!this.checked) {
+                    inputField.value = 0; // Reset the value if checkbox is unchecked
+                }
+                console.log('Toggled input field:', inputField.id, 'disabled:', inputField.disabled);
+            } else {
+                console.log('No input field found for:', this.id);
+            }
+        });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+        const emailInput = document.getElementById('emailadres');
+        const emailError = document.getElementById('emailError');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standaard e-mail regex
+
+        emailInput.addEventListener('input', () => {
+            if (emailInput.value) { // Controleer of er een waarde is
+                if (emailRegex.test(emailInput.value)) {
+                    emailError.style.display = 'none';
+                    emailInput.setCustomValidity('');
+                } else {
+                    emailError.style.display = 'block';
+                    emailInput.setCustomValidity('Invalid email address');
+                }
+            } else {
+                emailError.style.display = 'none';
+                emailInput.setCustomValidity('');
+            }
+        });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+        const selectElements = document.querySelectorAll('select');
+
+        selectElements.forEach(select => {
+            select.addEventListener('mouseover', () => {
+                const options = select.options;
+                for (let i = 0; i < options.length; i++) {
+                    options[i].addEventListener('mouseover', () => {
+                        options[i].style.backgroundColor = 'rgba(217, 49, 52, 0.3)';
+                        options[i].style.color = 'white';
+                    });
+                    options[i].addEventListener('mouseout', () => {
+                        options[i].style.backgroundColor = 'white';
+                        options[i].style.color = 'black';
+                    });
+                }
+            });
+        });
+        });
     </script>
 </body>
-</html>
+</html>    

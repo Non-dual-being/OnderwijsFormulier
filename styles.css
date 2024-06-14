@@ -8,6 +8,83 @@ body {
 
 }
 
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"], input[type="tel"] {
+    background-color: white; /* Background color for the input box */
+    border: 2px solid #081540; /* Dark blue border color */
+    border-radius: 5px;
+    padding: 10px; /* Padding */
+    font-size: 16px; /* Font size */
+    color: black; /* Text color */
+    transition: border-color 0.3s, background-color 0.3s; /* Smooth transition for border and background color */
+    box-sizing: border-box;
+}
+
+/* Change the border and background color of input elements on hover */
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, input[type="date"]:hover, input[type="number"]:hover, input[type="tel"]:hover {
+    border-color: #081540; /* Dark blue border color on hover */
+    background-color: rgba(8, 21, 64, 0.1); /* Light blue background color on hover */
+}
+
+/* Change the border color of input elements on focus */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="number"]:focus, input[type="tel"]:focus {
+    border-color: #081540; /* Dark blue border color on focus */
+    outline: none; /* Remove default outline */
+    background-color: rgba(8, 21, 64, 0.2); /* Slightly darker blue background color on focus */
+}
+
+
+
+/* Reset browser default styles for select elements */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white; /* Background color for the select box */
+    border: 3px solid rgba(217, 49, 52, 0.8); /* Darker border color */
+    border-radius: 5px;
+    padding: 10px; /* Padding */
+    font-size: 16px; /* Font size */
+    color: black; /* Text color */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23D93134" d="M2 5L0 3h4L2 5z"/></svg>'); /* Pijltje toevoegen */
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px;
+    padding-right: 30px; /* Ruimte voor het pijltje */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+/* Ensure the custom styles are applied even with the default select behavior */
+select::-ms-expand {
+    display: none; /* Hide the default arrow in IE and Edge */
+}
+
+select:focus {
+    outline: none;
+    border-color: #081540; /* Blue border color on focus */
+}
+
+select:hover {
+    border: 3px solid #081540;/* Darker border color */
+}
+
+/* Apply custom styles to the options in the select dropdown */
+select option {
+    background-color: white !important; /* Background color for options */
+    color: black !important; /* Text color for options */
+}
+
+/* Change the background color of options on hover */
+select option:hover {
+    background-color: #D93134 !important; /* Red color */
+    color: white !important; /* White text color for better contrast */
+}
+
+/* Change the background color of selected options */
+select option:checked {
+    background-color: #081540 !important; /* Blue color */
+    color: white !important; /* Text color for better contrast */
+}
+
 h1 {
     color: #DC493A;
     font: 32px Montserrat, sans-serif;
@@ -61,6 +138,7 @@ fieldset ul li {
     color: #DC493A;
     margin-bottom: 10px;
     font-weight: bold;
+    font-size: 1.5em;
 }
 
 .informative-text p {
@@ -137,8 +215,8 @@ input, select, button {
 
 .foutmelding {
     display: none;
-    color: #721c24;
-    background-color: #f8d7da;
+    color:white;
+    background-color: #081540;
     border: 1px solid #f5c6cb;
     padding: 10px;
     border-radius: 4px;
@@ -195,7 +273,18 @@ p {
     background-color: #081540;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
-    
+
+.foutmeldingmail {
+    display: none;
+    color: white;
+    background-color:#081540;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+    position: relative;
+    z-index: 10;
+}
 #downloadRooster {
     background-color: #D93134; /* Red color matching the screenshot */
     color: white; /* White text */
