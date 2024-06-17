@@ -39,18 +39,19 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: white; /* Background color for the select box */
-    border: 3px solid rgba(217, 49, 52, 0.8); /* Darker border color */
+    background-color: white;
     border-radius: 5px;
-    padding: 10px; /* Padding */
-    font-size: 16px; /* Font size */
-    color: black; /* Text color */
+    padding: 10px;
+    font-size: 16px;
+    color: black;
     background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23D93134" d="M2 5L0 3h4L2 5z"/></svg>'); /* Pijltje toevoegen */
     background-repeat: no-repeat;
     background-position: right 10px top 50%;
     background-size: 10px;
-    padding-right: 30px; /* Ruimte voor het pijltje */
-    transition: border-color 0.3s; /* Smooth transition for border color */
+    padding-right: 30px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 /* Ensure the custom styles are applied even with the default select behavior */
@@ -63,9 +64,6 @@ select:focus {
     border-color: #081540; /* Blue border color on focus */
 }
 
-select:hover {
-    border: 3px solid #081540;/* Darker border color */
-}
 
 /* Apply custom styles to the options in the select dropdown */
 select option {
@@ -124,6 +122,15 @@ fieldset ul {
 fieldset ul li {
     margin: 5px 0;
 }
+
+.lesprogramma select {
+    border: 3px solid #081540(217, 49, 52, 0.8); /* Thicker border */
+}
+/* Specifieke hover styling binnen het fieldset */
+.lesprogramma select:hover {
+    border-color: transparent; /* Remove the initial border */
+}
+
 
 .informative-text {
     font-size: 16px;
@@ -471,6 +478,27 @@ input[type="checkbox"]:checked::after {
     font-weight: bold;
     margin-top: 20px;
 }
+
+form button#verzendknop {
+    font-family: 'DarkForest', sans-serif !important; /* Zorgt ervoor dat het lettertype wordt toegepast */
+    font-size: max(30px) !important;
+    background-color: #081540 !important; /* Achtergrondkleur */
+    color: white !important; /* Tekstkleur rood */
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    display: inline-block !important; /* Houdt de knop in de stroom van het document */
+    margin: 20px auto !important; /* Maakt ruimte rond de knop en centreert hem */
+    transition: padding 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease !important;
+    box-sizing: border-box; /* Zorgt ervoor dat de outline geen invloed heeft op de grootte */
+}
+
+form button#verzendknop:hover {
+    background-color: #152036c0 !important; /* Blauwe kleur bij hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8) !important; /* Schaduw bij hover */
+    outline: none !important; /* Verwijdert de rand bij hover */
+}
+
+
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
     width: 8px; /* Width of the scrollbar */

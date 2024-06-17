@@ -73,7 +73,7 @@
             </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="lesprogramma">
             <legend>Lesprogramma</legend>
             <label for="onderwijsNiveau">Selecteer het Schooltype</label>
             <select id="onderwijsNiveau" name="onderwijsNiveau">
@@ -81,18 +81,19 @@
                 <option value="voortgezetOnderbouw">Voortgezet Onderwijs - Onderbouw</option>
                 <option value="voortgezetBovenbouw">Voortgezet Onderwijs - Bovenbouw</option>
             </select>
-
+        
             <div id="keuzeModuleSelectie">
                 <label for="keuzeModule">Kies een lesmodule</label>
                 <select id="keuzeModule" name="keuzeModule">
                     <!-- Keuzemodules worden hier dynamisch toegevoegd -->
                 </select>
             </div>
-
+        
             <label for="aantalLeerlingen">Vul het aantal leerlingen in</label>
             <input type="number" id="aantalLeerlingen" name="aantalLeerlingen" min="40" max="160" step="1" required placeholder="min=40, max=160">
             <div id="aantalLeerlingenFout" class="foutmelding">Vul alstublieft een geldig aantal van 40 tot en met 160 in.</div>
         </fieldset>
+        
 
         <fieldset>
             <legend>Overzicht rooster</legend>
@@ -237,6 +238,7 @@
                 </div>
             </div>
         </fieldset>
+        <button type="submit" id="verzendknop">Verzenden</button>
     </form>
     
     <script>
@@ -686,6 +688,62 @@
             });
         });
         });
+        function getPriceSummary() {
+            const bezoekDiv = document.getElementById('bezoek').innerText;
+            const foodSummaryDiv = document.getElementById('foodSummary').innerText;
+            const totalPrice = document.getElementById('totalPrice').innerText;
+
+            return `
+            ${bezoekDiv}
+            ${foodSummaryDiv}
+            Totaalprijs: €${totalPrice}
+            `;
+        }
+        document.getElementById('onderwijsFormulier').addEventListener('submit', function(event) {
+    event.preventDefault(); // Voorkom standaard formulier verzending
+
+    // Verzamel de gegevens
+    const onderwijsNiveau = document.getElementById('onderwijsNiveau').value;
+    const keuzeModule = document.getElementById('keuzeModule').value;
+    const aantalLeerlingen = document.getElementById('aantalLeerlingen').value;
+    const contactpersoonnaam = document.getElementById('contactpersoonnaam').value;
+    const emailadres = document.getElementById('emailadres').value;
+    const telefoonnummer = document.getElementById('telefoonnummer').value;
+    const totaalbegeleiders = document.getElementById('totaalbegeleiders').value;
+    const niveauLeerjaar = document.getElementById('niveauLeerjaar').value;
+    const schoolnaam = document.getElementById('schoolnaam').value;
+    const adres = document.getElementById('adres').value;
+    const postcodeplaats = document.getElementById('postcodeplaats').value;
+    const bezoekdatum = document.getElementById('bezoekdatum').value;
+    const aankomsttijd = document.getElementById('aankomsttijd').value;
+    const vertrektijd = document.getElementById('vertrektijd').value;
+    const hoekentGeoFort = document.getElementById('hoekentGeoFort').value;
+    
+    const priceSummary = getPriceSummary();
+    // Genereer het overzicht
+    const overzicht = `
+        Contactpersoon: ${contactpersoonnaam}
+        E-mailadres: ${emailadres}
+        Telefoonnummer: ${telefoonnummer}
+        Totaal begeleiders: ${totaalbegeleiders}
+        Niveau en Leerjaar: ${niveauLeerjaar}
+        Schoolnaam: ${schoolnaam}
+        Adres: ${adres}
+        Postcode en plaats: ${postcodeplaats}
+        Bezoekdatum: ${bezoekdatum}
+        Aankomsttijd: ${aankomsttijd}
+        Vertrektijd: ${vertrektijd}
+        Hoe kent u GeoFort: ${hoekentGeoFort}
+        Onderwijsniveau: ${onderwijsNiveau}
+        Gekozen lesmodule: ${keuzeModule}
+        Aantal leerlingen: ${aantalLeerlingen}
+        Prijs overzicht: ${priceSummary}
+    `;
+
+    // Dynamisch de mailto-link genereren
+    const mailToLink = `mailto:${emailadres}?subject=Bevestiging onderwijsaanvraag GeoFort&body=${encodeURIComponent(overzicht)}`;
+    window.location.href = mailToLink;
+});
     </script>
 </body>
 </html>    
