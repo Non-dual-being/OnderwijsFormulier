@@ -439,6 +439,19 @@ input[type="checkbox"]:checked::after {
     transform: translate(-50%, -50%);
 }
 
+
+input[type="number"]:disabled {
+    background-color: #f9f9f9; /* Lichte achtergrondkleur */
+    border: 2px solid #ddd; /* Lichtgrijze rand */
+    color: #aaa; /* Grijze tekstkleur */
+}
+
+input[type="number"]:disabled:hover {
+    background-color: #f2dede; /* Roodachtige achtergrondkleur bij hover */
+    border: 2px solid #ebccd1; /* Roodachtige rand bij hover */
+    color: #a94442; /* Rode tekstkleur bij hover */
+}
+
 .price-summary-section {
     margin-top: 20px;
 }
@@ -477,6 +490,39 @@ input[type="checkbox"]:checked::after {
     font-size: 1.5em;
     font-weight: bold;
     margin-top: 20px;
+}
+
+#vragenOpmerkingen {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #081540;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: black;
+    transition: border-color 0.3s, background-color 0.3s;
+    box-sizing: border-box;
+    font-family: 'Avenir', sans-serif;
+    resize: none; /* Voorkomt dat de gebruiker het formaat van het tekstvak kan wijzigen */
+}
+
+#vragenOpmerkingen:hover {
+    border-color: #081540;
+    background-color: rgba(8, 21, 64, 0.1);
+}
+
+#vragenOpmerkingen:focus {
+    border-color: #081540;
+    outline: none;
+    background-color: rgba(8, 21, 64, 0.2);
+}
+
+#tekenTeller {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    text-align: right;
+    font-family: 'Avenir', sans-serif;
 }
 
 form button#verzendknop {
