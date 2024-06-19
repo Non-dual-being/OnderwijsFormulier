@@ -777,7 +777,7 @@
     `
 
     const overzichtAanvrager = `
-Hieronder een totaaloverzicht van de aanvraag:
+    Hieronder een totaaloverzicht van de aanvraag:
         Bezoekgegevens
         ${padString(' - Voornaam Contactpersoon:', contactpersoonvoornaam)}
         ${padString(' - Achternaam Contactpersoon:', contactpersoonachternaam)}
@@ -797,9 +797,6 @@ Hieronder een totaaloverzicht van de aanvraag:
         `
 
     // Dynamisch de mailto-link genereren
-    const mailToLink = `mailto:${emailadres}?subject=Bevestiging onderwijsaanvraag GeoFort&body=${encodeURIComponent(overzichtAanvrager)}`;
-    window.location.href = mailToLink;
-
     const blob = new Blob([overzichtAanvrager], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
 
