@@ -18,36 +18,36 @@
     <form id="onderwijsFormulier" method="post" action="<?php echo admin_url('admin-post.php'); ?>">
         <fieldset>
             <legend>Basis-Gegevens</legend>
-            <label for="contactpersoonvoornaam">Voornaam contactpersoon</label>
-            <input type="text" id="contactpersoonvoornaam" name="contactpersoonvoornaam" required>
+            <label for="contactpersoonvoornaam">Voornaam contactpersoon</label >
+            <input type="text" id="contactpersoonvoornaam" name="contactpersoonvoornaam" required >
 
             <label for="contactpersoonachternaam">Achternaam contactpersoon</label>
-            <input type="text" id="contactpersoonachternaam" name="contactpersoonachternaam" required>
+            <input type="text" id="contactpersoonachternaam" name="contactpersoonachternaam" required >
             
             <label for="emailadres">E-mailadres</label>
             <input type="email" id="emailadres" name="emailadres" required>
             <div id="emailError" class="foutmeldingmail">Vul een geldig e-mailadres in.</div>
             
             <label for="telefoonnummer">Telefoonnummer</label>
-            <input type="tel" id="telefoonnummer" name="telefoonnummer" required>
+            <input type="tel" id="telefoonnummer" name="telefoonnummer" >
             
             <label for="totaalbegeleiders">Aantal begeleiders</label>
-            <input type="number" id="totaalbegeleiders" name="totaalbegeleiders" min="1" max="50" step="1" required> 
+            <input type="number" id="totaalbegeleiders" name="totaalbegeleiders" min="1" max="50" step="1" > 
             
             <label for="niveauleerjaar">Niveau en Leerjaar</label>
-            <input type="text" id="niveauLeerjaar" name="niveauleerjaar" required>
+            <input type="text" id="niveauLeerjaar" name="niveauleerjaar" >
             
             <label for="schoolnaam">Naam school</label>
-            <input type="text" id="schoolnaam" name="schoolnaam" required>
+            <input type="text" id="schoolnaam" name="schoolnaam" >
             
             <label for="adres">Adres</label>
-            <input type="text" id="adres" name="adres" required>
+            <input type="text" id="adres" name="adres" >
             
             <label for="postcodeplaats">Postcode en plaats</label>
-            <input type="text" id="postcodeplaats" name="postcodeplaats" required>
+            <input type="text" id="postcodeplaats" name="postcodeplaats" >
             
             <label for="bezoekdatum">Datum bezoek</label>
-            <input type="date" id="bezoekdatum" name="bezoekdatum" required>
+            <input type="date" id="bezoekdatum" name="bezoekdatum" >
             
             <label for="aankomsttijd">Wij verwachten u om</label>
             <input type="time" id="aankomsttijd" name="aankomsttijd" value="10:00" readonly required data-hover-message="Standaard aankomsttijd">
@@ -709,8 +709,6 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM content loaded'); // Test if the event listener is set up correctly
-
             const vragenOpmerkingen = document.getElementById('vragenOpmerkingen');
             const tekenTeller = document.getElementById('tekenTeller');
             
@@ -721,7 +719,6 @@
                     const maxLength = 600;
                     const remaining = maxLength - vragenOpmerkingen.value.length;
                     tekenTeller.textContent = `${remaining} tekens over`;
-                    console.log(`Remaining characters: ${remaining}`);
                 }
 
                 // Initial update to set the correct counter value on page load
@@ -737,139 +734,155 @@
         });
 
         document.getElementById('onderwijsFormulier').addEventListener('submit', function(event) {
-            event.preventDefault(); // Voorkom standaard formulier verzending
-        
-            function getPriceSummary() {
-                const bezoekDiv = document.getElementById('bezoek').innerText.trim().replace('Bezoekprijs: ', '€').replace('Bezoekprijs:', 'Bezoekprijs: €');
-                const foodSummaryItems = Array.from(document.getElementById('foodSummary').getElementsByClassName('summary-item'))
-                    .map(item => item.innerText.replace(/\n/g, ' ').replace(/: /g, ': '))
-                    .join('\n    - ');
-                const totalPrice = document.getElementById('totalPrice').innerText;
+    event.preventDefault(); // Voorkom standaard formulier verzending
 
-                let priceSummary = `${bezoekDiv}\nTotaalprijs: €${totalPrice}`;
-                if (foodSummaryItems) {
-                    priceSummary = `${bezoekDiv}\nBestelde versnaperingen:\n    - ${foodSummaryItems}\nTotaalprijs: €${totalPrice}`;
-                }
-
-                return priceSummary;
-            }
-
-            const onderwijsNiveauMapping = {
-                primairOnderwijs: "Primair Onderwijs",
-                voortgezetOnderbouw: "Voortgezet Onderwijs - Onderbouw",
-                voortgezetBovenbouw: "Voortgezet Onderwijs - Bovenbouw"
-            };
-
-            // Verzamel de gegevens
-            const onderwijsNiveau = document.getElementById('onderwijsNiveau').value;
-            const keuzeModule = document.getElementById('keuzeModule').value;
-            const aantalLeerlingen = document.getElementById('aantalLeerlingen').value;
-            const contactpersoonvoornaam = document.getElementById('contactpersoonvoornaam').value;
-            const contactpersoonachternaam = document.getElementById('contactpersoonachternaam').value;
-            const emailadres = document.getElementById('emailadres').value;
-            const telefoonnummer = document.getElementById('telefoonnummer').value;
-            const totaalbegeleiders = document.getElementById('totaalbegeleiders').value;
-            const niveauLeerjaar = document.getElementById('niveauLeerjaar').value;
-            const schoolnaam = document.getElementById('schoolnaam').value;
-            const adres = document.getElementById('adres').value;
-            const postcodeplaats = document.getElementById('postcodeplaats').value;
-            const bezoekdatum = new Date(document.getElementById('bezoekdatum').value).toLocaleDateString('nl-NL', {
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            });
-            const aankomsttijd = document.getElementById('aankomsttijd').value;
-            const vertrektijd = document.getElementById('vertrektijd').value;
-            const hoekentGeoFort = document.getElementById('hoekentGeoFort').value;
-            const vragenOpmerkingen = document.getElementById('vragenOpmerkingen').value;
-            const priceSummary = getPriceSummary();
-            
-            const onderwijsNiveauText = onderwijsNiveauMapping[onderwijsNiveau];
-            
-            // Functie om te helpen met padding van strings
-            function padString(label, value) {
-                const padLength = 40; // Fixed padding length
+    // Functie om te helpen met padding van strings
+    function padString(label, value, padLength = 60) {
                 const padding = ' '.repeat(padLength - label.length);
                 return label + padding + value;
             }
 
-            // Genereer het overzicht voor de GeoFortdocent
-            const overzichtGeoFortMedewerker = `
-                Hieronder een totaaloverzicht van de aanvraag:
-                    Bezoekgegevens
-                    ${padString(' - Voornaam Contactpersoon:', contactpersoonvoornaam, 30)}
-                    ${padString(' - Achternaam Contactpersoon:', contactpersoonachternaam, 30)}
-                    ${padString(' - E-mailadres:', emailadres, 30)}
-                    ${padString(' - Telefoonnummer:', telefoonnummer)}
-                    ${padString(' - Totaal begeleiders:', totaalbegeleiders)}
-                    ${padString(' - Niveau en Leerjaar:', niveauLeerjaar)}
-                    ${padString(' - Schoolnaam:', schoolnaam)}
-                    ${padString(' - Bezoekdatum:', bezoekdatum)}
-                    ${padString(' - Hoe kent u GeoFort:', hoekentGeoFort)}
-                    ${padString(' - Onderwijsniveau:', onderwijsNiveauText)}
-                    ${padString(' - Gekozen lesmodule:', keuzeModule)}
-                    ${padString(' - Aantal leerlingen:', aantalLeerlingen)}
-                    ${padString(' - Vragen en opmerkingen:',  vragenOpmerkingen)}\n
-                    ${(priceSummary.trim())}
-            `
+    function getLeftPadding(label, padLength = 40) {
+    return ' '.repeat(padLength - label.length);
+}
+    
 
-            const overzichtAanvrager = `
-                Hieronder een totaaloverzicht van de aanvraag:
-                    Bezoekgegevens
-                    ${padString(' - Voornaam Contactpersoon:', contactpersoonvoornaam)}
-                    ${padString(' - Achternaam Contactpersoon:', contactpersoonachternaam)}
-                    ${padString(' - E-mailadres:', emailadres)}
-                    ${padString(' - Telefoonnummer:', telefoonnummer)}
-                    ${padString(' - Totaal begeleiders:', totaalbegeleiders)}
-                    ${padString(' - Niveau en Leerjaar:', niveauLeerjaar)}
-                    ${padString(' - Schoolnaam:', schoolnaam)}
-                    ${padString(' - Bezoekdatum:', bezoekdatum)}
-                    ${padString(' - Hoe kent u GeoFort:', hoekentGeoFort)}
-                    ${padString(' - Onderwijsniveau:', onderwijsNiveauText)}
-                    ${padString(' - Gekozen lesmodule:', keuzeModule)}
-                    ${padString(' - Aantal leerlingen:', aantalLeerlingen)}
-                    ${padString(' - Vragen en opmerkingen:',  vragenOpmerkingen)}\n
-                    Prijs overzicht
-                    ${(priceSummary.trim())}
-            `
+    // Verzamel de gegevens uit de formuliervelden
+    const onderwijsNiveauMapping = {
+        primairOnderwijs: "Primair Onderwijs",
+        voortgezetOnderbouw: "Voortgezet Onderwijs - Onderbouw",
+        voortgezetBovenbouw: "Voortgezet Onderwijs - Bovenbouw"
+    };
 
-            // Stuur de gegevens naar de backend
-            const adminPostUrl = "<?php echo $admin_post_url; ?>";
-            fetch(adminPostUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: new URLSearchParams({
-                    action: 'submit_geofort_form',
-                    emailadres: emailadres,
-                    contactpersoonvoornaam: contactpersoonvoornaam,
-                    contactpersoonachternaam: contactpersoonachternaam,
-                    telefoonnummer: telefoonnummer,
-                    overzichtAanvrager: overzichtAanvrager,
-                    overzichtGeoFortMedewerker: overzichtGeoFortMedewerker
-                })
-            }).then(response => response.text())
-            .then(data => {
-                console.log(data);
-                // Handle success
-                // Redirect to thank you page
-                window.location.href = "<?php echo home_url('/dankjewel'); ?>";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    const onderwijsNiveau = document.getElementById('onderwijsNiveau').value;
+    const keuzeModule = document.getElementById('keuzeModule').value;
+    const aantalLeerlingen = document.getElementById('aantalLeerlingen').value;
+    const contactpersoonvoornaam = document.getElementById('contactpersoonvoornaam').value;
+    const contactpersoonachternaam = document.getElementById('contactpersoonachternaam').value;
+    const emailadres = document.getElementById('emailadres').value;
+    const telefoonnummer = document.getElementById('telefoonnummer').value;
+    const totaalbegeleiders = document.getElementById('totaalbegeleiders').value;
+    const niveauLeerjaar = document.getElementById('niveauLeerjaar').value;
+    const schoolnaam = document.getElementById('schoolnaam').value;
+    const adres = document.getElementById('adres').value;
+    const postcodeplaats = document.getElementById('postcodeplaats').value;
+    const bezoekdatum = new Date(document.getElementById('bezoekdatum').value).toLocaleDateString('nl-NL', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+    const aankomsttijd = document.getElementById('aankomsttijd').value;
+    const vertrektijd = document.getElementById('vertrektijd').value;
+    const hoekentGeoFort = document.getElementById('hoekentGeoFort').value;
+    const vragenOpmerkingen = document.getElementById('vragenOpmerkingen').value;
 
-            const blob = new Blob([overzichtAanvrager], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
+    const totalPrice2 = parseFloat(document.getElementById('totalPrice').innerText).toFixed(2);
+    const bezoekPrice2 = document.getElementById('bezoek').innerText.trim().replace(/\n/g, ' ').replace("Bezoekprijs: ", "");
 
-            // Maak een download-link
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'aanvraag_overzicht.txt';
-            a.click();
+    // Verzamel de bestelde snacks en lunches individueel
+    const snacks = [
+        { name: "Remise break", amount: document.getElementById('remiseBreakAantal').value, price: 2.60 },
+        { name: "Kazerne break", amount: document.getElementById('kazerneBreakAantal').value, price: 2.60 },
+        { name: "Fortgracht break", amount: document.getElementById('fortgrachtBreakAantal').value, price: 2.60 },
+        { name: "Waterijsje", amount: document.getElementById('waterijsjeAantal').value, price: 1.00 },
+        { name: "Pakje drinken", amount: document.getElementById('pakjeDrinkenAantal').value, price: 1.00 },
+    ];
 
-            // Revoke the URL after downloading
-            URL.revokeObjectURL(url);
-        });
+    const lunches = [
+        { name: "Remiselunch", amount: document.getElementById('remiseLunchAantal').value, price: 5.20 },
+        { name: "Twee belegde broodjes en fruitsap", amount: document.getElementById('tweeBroodjesAantal').value, price: 10.30 },
+    ];
+
+    const voorbeeldLabel = ' - Achternaam Contactpersoon:   ';
+    const leftPadding = getLeftPadding(voorbeeldLabel);
+
+    // Genereer het overzicht voor de GeoFortdocent
+    const overzichtGeoFortMedewerker = `
+        Hieronder een totaaloverzicht van de aanvraag:
+        Bezoekgegevens
+        ${padString(' - Voornaam Contactpersoon:', contactpersoonvoornaam)}
+        ${padString(' - Achternaam Contactpersoon:', contactpersoonachternaam)}
+        ${padString(' - E-mailadres:', emailadres)}
+        ${padString(' - Telefoonnummer:', telefoonnummer)}
+        ${padString(' - Totaal begeleiders:', totaalbegeleiders)}
+        ${padString(' - Niveau en Leerjaar:', niveauLeerjaar)}
+        ${padString(' - Schoolnaam:', schoolnaam)}
+        ${padString(' - Bezoekdatum:', bezoekdatum)}
+        ${padString(' - Hoe kent u GeoFort:', hoekentGeoFort)}
+        ${padString(' - Onderwijsniveau:', onderwijsNiveauMapping[onderwijsNiveau])}
+        ${padString(' - Gekozen lesmodule:', keuzeModule)}
+        ${padString(' - Aantal leerlingen:', aantalLeerlingen)}
+        ${padString(' - Vragen en opmerkingen:', vragenOpmerkingen)}\n
+        Prijs overzicht
+        ${padString(' - Bezoekprijs:', `${bezoekPrice2}`)}
+        ${snacks.some(snack => snack.amount > 0) ? 'Bestelde Snacks\n' : ''}${snacks.filter(snack => snack.amount > 0).map(snack => `${leftPadding}${padString(`- ${snack.amount} ${snack.name}:`, `€${(snack.amount * snack.price).toFixed(2)}`)}`).join('\n')}
+        ${lunches.some(lunch => lunch.amount > 0) ? 'Bestelde Lunches\n' : ''}${lunches.filter(lunch => lunch.amount > 0).map(lunch => `${leftPadding}${padString(`- ${lunch.amount} ${lunch.name}:`, `€${(lunch.amount * lunch.price).toFixed(2)}`)}`).join('\n')}
+        ${padString('Totaalprijs:',`€${totalPrice2}`)}
+    `;
+
+    // Genereer het overzicht voor de aanvrager
+    const overzichtAanvrager = `
+        Hieronder een totaaloverzicht van de aanvraag:
+        Bezoekgegevens
+        ${padString(' - Voornaam Contactpersoon:', contactpersoonvoornaam)}
+        ${padString(' - Achternaam Contactpersoon:', contactpersoonachternaam)}
+        ${padString(' - E-mailadres:', emailadres)}
+        ${padString(' - Telefoonnummer:', telefoonnummer)}
+        ${padString(' - Totaal begeleiders:', totaalbegeleiders)}
+        ${padString(' - Niveau en Leerjaar:', niveauLeerjaar)}
+        ${padString(' - Schoolnaam:', schoolnaam)}
+        ${padString(' - Bezoekdatum:', bezoekdatum)}
+        ${padString(' - Hoe kent u GeoFort:', hoekentGeoFort)}
+        ${padString(' - Onderwijsniveau:', onderwijsNiveauMapping[onderwijsNiveau])}
+        ${padString(' - Gekozen lesmodule:', keuzeModule)}
+        ${padString(' - Aantal leerlingen:', aantalLeerlingen)}
+        ${padString(' - Vragen en opmerkingen:', vragenOpmerkingen)}\n
+        Prijs overzicht
+        ${padString(' - Bezoekprijs:', `${bezoekPrice2}`)}
+        ${snacks.some(snack => snack.amount > 0) ? 'Bestelde Snacks\n' :''}${snacks.filter(snack => snack.amount > 0).map(snack => `${leftPadding}${padString(` - ${snack.amount} ${snack.name}:`, `€${(snack.amount * snack.price).toFixed(2)}`)}`).join('\n')}
+        ${lunches.some(lunch => lunch.amount > 0) ? 'Bestelde Lunches\n' :''}${lunches.filter(lunch => lunch.amount > 0).map(lunch => `${leftPadding}${padString(` - ${lunch.amount} ${lunch.name}:`, `€${(lunch.amount * lunch.price).toFixed(2)}`)}`).join('\n')}
+        ${padString('Totaalprijs:', `€${totalPrice2}`)}
+    `;
+
+    // Stuur de gegevens naar de backend
+    const adminPostUrl = "<?php echo $admin_post_url; ?>";
+    fetch(adminPostUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            action: 'submit_geofort_form',
+            emailadres: emailadres,
+            contactpersoonvoornaam: contactpersoonvoornaam,
+            contactpersoonachternaam: contactpersoonachternaam,
+            telefoonnummer: telefoonnummer,
+            overzichtAanvrager: overzichtAanvrager,
+            overzichtGeoFortMedewerker: overzichtGeoFortMedewerker
+        })
+    }).then(response => response.text())
+    .then(data => {
+        console.log(data);
+        // Handle success
+        // Redirect to thank you page
+        window.location.href = "<?php echo home_url('/dankjewel'); ?>";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    const blob = new Blob([overzichtAanvrager], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    // Maak een download-link
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'aanvraag_overzicht.txt';
+    a.click();
+
+    // Revoke the URL after downloading
+    URL.revokeObjectURL(url);
+});
+
+
     </script>
     <?php get_footer(); ?>
 </body>
